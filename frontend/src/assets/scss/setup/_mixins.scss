@@ -1,0 +1,54 @@
+@mixin btn($type: "regular", $bg: $gray1, $clr: $gray5, $padding: em(15px) em(15px), $hover: darken($bg, 8%), $font-size: em(16px)) {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    padding: $padding;
+    line-height: 1.25;
+    font-size:$font-size;
+    font-variation-settings: "wght" 430;
+    border: none;
+    cursor: pointer;
+    border-radius: 2em ;
+    font-weight: 500;
+  
+    transition: background-color 0.2s;
+  
+    @if $type == "regular" {
+      background-color: $bg;
+      color: $clr;
+      &:hover {
+        background-color: $gray2;
+        color: $gray6;
+      }
+    } @else if $type == "dark" {
+      background-color: $gray7;
+      color: $gray1;
+      &:hover {
+        font-size: em(16px);
+      }
+    } @else if $type == "light" {
+      background-color: $gray3;
+      color: $gray2;
+      &:hover {
+        background-color: $gray1;
+        color: $gray3;
+      }
+    }
+    @if $type =="active" {
+      background-color: $bg;
+      font-weight: 600;
+      color: lighten($gray7, 17%);
+    }
+    @if $type =="shadow" {
+      margin: 1em;
+      border: 1px solid $gray3;
+      background-color: $bg;
+      font-weight: 600;
+      color: lighten($gray7, 17%);
+      padding:em(7px);
+      &:hover {
+        box-shadow: -3px 3px rgba($gray3, .4);
+      }
+    }
+
+  }

@@ -65,4 +65,19 @@ a.active {
     font-size: 1.5em;
   }
 }
+  .btn {
+    @include btn;
+    &-dark {
+      @include btn("dark");
+    }
+    &-light {
+      @include btn("light");
+    }
+    &-active {
+      @include btn("active");
+    }
+    &-shadow {
+      @include btn("shadow");
+    }
+  }
 

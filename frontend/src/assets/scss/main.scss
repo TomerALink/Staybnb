@@ -1,8 +1,11 @@
 /* Setup */
-@import 'setup/vars';
+
+
 @import 'setup/typography';
+@import 'setup/vars';
 @import 'setup/animations';
 @import 'setup/mixins';
+@import 'setup/functions';
 
 /* Base */
 @import 'base/base';
@@ -12,5 +15,7 @@
 
 /* Components */
 @import 'cmps/logo';
+@import 'cmps/app_header';
+
 
 /* MEDIA QUERIES */
