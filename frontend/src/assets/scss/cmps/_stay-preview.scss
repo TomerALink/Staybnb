@@ -1,0 +1,96 @@
+.stay-preview {
+
+  max-width: 1200px;
+  font-size: rem(14px);
+  position: relative;
+  display: grid;
+  margin: 5px;
+
+  .slider {
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+  }
+
+  .imgs {
+    width: 100%;
+  }
+
+  .stay-preview-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 11.2px;
+    object-fit: cover;
+  }
+
+  .stay-preview-star-icon {
+    max-width: rem(14px);
+  }
+
+  .stay-preview-info {
+    display: grid;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+    
+
+    .stay-preview-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
+
+    .stay-preview-location,
+    .stay-preview-rating,
+    .stay-preview-distance,
+    .stay-preview-date-range,
+    .stay-preview-price {
+      color: $gray7;
+
+      margin: 0;
+      padding: 0;
+    }
+
+    .stay-preview-rating {
+      display: flex;
+      align-items: center;
+      gap: rem(5px);
+      margin-right: rem(15px);
+    }
+
+    .stay-preview-distance,
+    .stay-preview-date-range {
+      color: $gray5;
+    }
+  }
+
+  span,
+  .stay-preview-location {
+    font-weight: bold;
+  }
+
+ 
+
+  .stay-preview-haert-icon {
+    position: absolute;
+    width: 2em;
+    top: 20px;
+    right: 20px;
+    z-index: 110;
+    display: block; 
+    fill: rgba(0, 0, 0, 0.5); 
+    height: 24px; 
+    width: 24px; 
+    stroke-width: 2; 
+    overflow: visible;
+    stroke: rgb(255, 255, 255);
+  }
+
+  .on-wish-list{
+    fill: $branding;
+  }
+  
+}
