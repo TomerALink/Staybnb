@@ -45,13 +45,13 @@ export default function SimpleSlider({ imgUrls, isOnWishList, addToWishList }) {
         ))}
       </div>
       {imgIndex > 0 &&
-        <button onClick={showPrevImg} className="btn btn-img-slider" style={{ left: 0 }}>
-          <img className='avatar' src="/src/assets/img/left.svg" alt="" />
+        <button onClick={showPrevImg} className="btn-img-slider" style={{ left: 0 }}>
+          <img src="/src/assets/img/left.svg" alt="" />
         </button>
       }
       {imgIndex < imgUrls.length - 1 &&
-        <button onClick={showNextImg} className="btn btn-img-slider" style={{ right: 0 }}>
-          <img className='avatar' src="/src/assets/img/right.svg" alt="" />
+        <button onClick={showNextImg} className="btn-img-slider" style={{ right: 0 }}>
+          <img src="/src/assets/img/right.svg" alt="" />
         </button>
       }
       <div className="white-dots">
