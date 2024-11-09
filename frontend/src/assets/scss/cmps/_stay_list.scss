@@ -1,25 +1,25 @@
 .list-container {
     padding: 0px 80px;
     margin: 16px 11.5px 72px;
-}
 
-.list {
+    .list {
 
-    --min-column-size: 332px;
-    --column-count: 6;
+        $min-column-size: 332px;
+        $column-count: 6;
 
-    display: grid;
-    grid-template-columns: repeat(var(--column-count), minmax(var(--min-column-size), 1fr));
+        display: grid;
+        grid-template-columns: repeat($column-count, minmax($min-column-size, 1fr));
 
-    column-gap: 1.45em;
-    row-gap: 2.1em;
+        column-gap: 1.45em;
+        row-gap: 2.1em;
 
 
-    padding: 0;
-    margin: 0;
+        padding: 0;
+        margin: 0;
 
-    li {
-        list-style: none;
+        li {
+            list-style: none;
+        }
+
     }
-
 }
