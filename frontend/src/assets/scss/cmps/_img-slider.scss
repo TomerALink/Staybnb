@@ -1,0 +1,85 @@
+.img-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    .img-slider-img-container {
+        border-radius: 2em;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+
+
+        .img-slider-img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            display: block;
+            flex-shrink: 0;
+            flex-grow: 0;
+            transition: translate 700ms ease-in-out;
+        }
+    }
+
+    .white-dots {
+        width:70px;
+        overflow-x: hidden;
+        position: absolute;
+        bottom: .5rem;
+        left: 50%; //TODO culc
+        translate: -50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: .5rem;
+        z-index: 100;
+
+        .img-slider-dot-btm {
+            height: .5em;
+            width: .25em;
+            padding: .25em;
+            background-color: rgba($gray1, .5);
+            border-radius: 50%;
+            border: none;
+        }
+
+        .selected {
+            padding: .3em;
+            background-color: $gray1;
+        }
+       
+    }
+
+    .btn-img-slider {
+        opacity: 0; 
+        transition: opacity 0.3s ease;
+        margin: 1em;
+       align-items: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        transition: background-color 100ms ease-in-out;
+        border-radius: 50%;
+        width: em(25px);
+        height: em(25px);
+        border: none;
+        top: 50%;
+        background-color: rgba($gray1, .5);
+
+        &:hover {
+            background-color: rgba($gray1, .8);
+            width: em(26px);
+            height: em(26px);
+        }
+    }
+
+    &:hover .btn-img-slider {
+        opacity: 1; 
+    }
+}
