@@ -1,15 +1,8 @@
 .stay-preview {
 
-  max-width: 1200px;
-  font-size: rem(14px);
-  position: relative;
-  display: grid;
-  margin: 5px;
-
   .slider {
-    max-width: 1200px;
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 20/19;
     margin: 0 auto;
   }
 
@@ -19,7 +12,7 @@
 
   .stay-preview-img {
     width: 100%;
-    aspect-ratio: 1/1;
+    // aspect-ratio: 1/1;
     border-radius: 11.2px;
     object-fit: cover;
   }
@@ -29,10 +22,13 @@
   }
 
   .stay-preview-info {
+    font-size: 1rem;
     display: grid;
     list-style-type: none;
-    padding: 0;
+    padding: 10px 0 0;
     margin: 0;
+    font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    line-height: 1.43;
     
     
 
@@ -52,6 +48,11 @@
 
       margin: 0;
       padding: 0;
+      
+    }
+
+    .stay-preview-price {
+      line-height: 1.5;
     }
 
     .stay-preview-rating {
@@ -76,9 +77,8 @@
 
   .stay-preview-haert-icon {
     position: absolute;
-    width: 2em;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     z-index: 110;
     display: block; 
     fill: rgba(0, 0, 0, 0.5); 
