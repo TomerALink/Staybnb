@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { AppHeader } from '../src/cmps/AppHeader'
 import { AppFooter } from '../src/cmps/AppFooter'
+import { store } from './store/store.js'
 import './assets/scss/main.scss'
 
 // import { store } from './store/store'
@@ -12,7 +13,9 @@ import { StayDetails } from './pages/StayDetails'
 export function App() {
   return (
     <>
-      {/* <Provider store={store}> */}
+
+     <Provider store={store}>
+
       <Router>
         <section className="main-layout app">
           <AppHeader />
@@ -27,7 +30,9 @@ export function App() {
         </section>
       </Router>
       {/* <UserMsg /> */}
-      {/* </Provider> */}
+
+     </Provider>
+
     </>
   )
 }

@@ -1,6 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { Logo } from './Logo.jsx'
-
+import { TagFilter } from "../cmps/TagFilterCarousel"
+import { loadStays, removeStay, removeStayOptimistic, saveStay, setFilterBy } from '../store/actions/stay.actions.js'
+import { useEffect } from 'react'
 export function AppHeader() {
+	const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+
+	useEffect(() => {
+    }, [filterBy])
+
+	function onSetFilter(filterBy) {
+		console.log(filterBy)
+        setFilterBy(filterBy)
+    }
 
 
 	return (
@@ -18,7 +30,10 @@ export function AppHeader() {
 					
 				</div>
 			</section>
-
+			<section className="bottom-header">
+				<TagFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
+			</section>
+				
 		</header>
 	)
 }
