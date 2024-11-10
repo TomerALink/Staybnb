@@ -1,0 +1,35 @@
+.stay-details {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .stay-share-save {
+        font-family: AirbnbCereal_W_Lt;
+        display: flex;
+        justify-content: space-between;
+
+        .stay-title {
+            color: $gray6;
+            font-size: rem(26px);
+            margin: rem(24px) 0;
+        }
+
+        .share-save-btns {
+            color: $gray5;
+            align-self: center;
+            margin-right: -12px;
+
+            button {
+                gap: rem(8px);
+                font-size: rem(14px);
+                text-decoration: underline;
+                cursor: pointer;
+
+                img {
+                    width: rem(16px);
+                    height: rem(16px);
+                }
+            }
+        }
+    }
+}

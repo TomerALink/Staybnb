@@ -1,6 +1,4 @@
 /* Setup */
-
-
 @import 'setup/typography';
 @import 'setup/vars';
 @import 'setup/animations';
@@ -12,12 +10,16 @@
 @import 'base/helpers';
 @import 'base/layout';
 
+/* pages */
+@import 'pages/stay-details';
 
 /* Components */
 @import 'cmps/logo';
 @import 'cmps/app_header';
 @import 'cmps/stay-preview';
 @import 'cmps/img-slider';
+
+@import 'cmps/stay-details-gallery';
 
 
 /* MEDIA QUERIES */
