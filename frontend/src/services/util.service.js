@@ -8,7 +8,7 @@ export const utilService = {
   debounce,
   getAssetSrc,
 
-  getRandomDecimal
+  getRandomDecimal,
 
   pluralize,
   calcAvgRating,
