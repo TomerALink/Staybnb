@@ -1,12 +1,12 @@
 .stay-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 200px);
+    grid-template-rows: repeat(2, 170px);
     gap: rem(8px);
 
     .gallery-item {
         overflow: hidden;
-        background-color: black;
+        background-color: $gray6;
 
         img {
             width: 100%;

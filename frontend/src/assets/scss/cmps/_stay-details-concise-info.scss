@@ -1,0 +1,41 @@
+.stay-concise-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: rem(20px);
+    padding-bottom: rem(16px);
+    font-family: AirbnbCereal_W_Bk;
+
+    .stay-concise-location {
+        font-size: rem(22px);
+        font-weight: bold;
+        color: $gray6;
+        margin-bottom: rem(2px);
+        gap: rem(5px);
+    }
+
+    .stay-concise-capacity {
+        font-size: rem(16px);
+        color: $gray7;
+        margin-bottom: rem(10px);
+    }
+
+    .stay-concise-rate {
+        font-size: rem(16px);
+        font-weight: bold;
+        color: $gray6;
+
+        img {
+            margin-right: rem(6px);
+            width: rem(15px);
+            height: rem(15px);
+        }
+
+        .reviews-link {
+            text-decoration: underline;
+            text-underline-offset: rem(1.2px);
+            letter-spacing: rem(0.2px);
+            cursor: context-menu;
+        }
+    }
+}

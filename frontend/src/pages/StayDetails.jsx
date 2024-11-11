@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
+import { utilService } from '../services/util.service.js'
 import { StayDetailsShareSave } from '../cmps/stay_details_cmps/StayDetailsShareSave.jsx'
 import { StayDetailsGallery } from '../cmps/stay_details_cmps/StayDetailsGallery.jsx'
 // import { StayDetailsHeader } from '../cmps/stay_details_cmps/StayDetailsHeader.jsx'
-// import { StayDetailsConciseInfo } from '../cmps/stay_details_cmps/StayDetailsConciseInfo.jsx'
-// import { StayDetailsHostInfo } from '../cmps/stay_details_cmps/StayDetailsHostInfo.jsx'
+import { StayDetailsConciseInfo } from '../cmps/stay_details_cmps/StayDetailsConciseInfo.jsx'
+import { StayDetailsHostInfo } from '../cmps/stay_details_cmps/StayDetailsHostInfo.jsx'
 // import { StayDetailsHostSummary } from '../cmps/stay_details_cmps/StayDetailsHostSummary.jsx'
-// import { StayDetailsAmenities } from '../cmps/stay_details_cmps/StayDetailsAmenities.jsx'
+import { StayDetailsAmenities } from '../cmps/stay_details_cmps/StayDetailsAmenities.jsx'
 // import { StayDetailsReservation } from '../cmps/stay_details_cmps/StayDetailsReservation.jsx'
 // import { StayDetailsReviews } from '../cmps/stay_details_cmps/StayDetailsReviews.jsx'
 // import { StayDetailsMap } from '../cmps/stay_details_cmps/StayDetailsMap.jsx'
@@ -28,12 +29,16 @@ export function StayDetails() {
         "price": 80.0,
         "summary": "Fantastic duplex apartment...",
         "capacity": 8,
-        "amenities": ["TV", "Wifi", "Kitchen", "Smoking allowed", "Pets allowed", "Cooking basics"],
+        "bathrooms": 2,
+        "bedrooms": 4,
+        "amenities": ["TV", "Wifi", "Kitchen", "Smoking allowed", "Pets allowed", "Cooking basics", "Air conditioning",
+            "Wheelchair accessible", "Pool", "Free parking on premises", "Doorman", "Gym", "Elevator", "Hot tub", "Heating"],
         "labels": ["Top of the world", "Trending", "Play", "Tropical"],
         "host": {
             "_id": "u101",
             "fullname": "Davit Pok",
-            "imgUrl": "/src/assets/img/asset 109.webp"
+            "imgUrl": "/src/assets/img/asset 109.webp",
+            "isSuperhost": true
         },
         "loc": {
             "country": "Portugal",
@@ -57,23 +62,24 @@ export function StayDetails() {
         ],
         "likedByUsers": ["mini-user"]
     }
+    const avgRating = utilService.calcAvgRating(stay.reviews)
 
     return (
         <section className="stay-details">
-            <StayDetailsShareSave stay={stay} />
-            <StayDetailsGallery stay={stay} />
-            {/* <StayDetailsHeader stay={stay} />
+            <StayDetailsShareSave name={stay.name} />
+            <StayDetailsGallery imgs={stay.imgUrls} />
+            {/* <StayDetailsHeader stay={stay} /> */}
             <section className="stay-main-info">
-                <StayDetailsConciseInfo stay={stay} />
-                <StayDetailsHostInfo stay={stay} />
-                <StayDetailsHostSummary stay={stay} />
-                <StayDetailsAmenities stay={stay} />
-                <StayDetailsReservation stay={stay} />
+                <StayDetailsConciseInfo type={stay.type} loc={stay.loc} capacity={stay.capacity} bedrooms={stay.bedrooms} bathrooms={stay.bathrooms} avgRating={avgRating} numReviews={stay.reviews.length} />
+                <StayDetailsHostInfo host={stay.host} avgRating={avgRating} numReviews={stay.reviews.length} />
+                {/* <StayDetailsHostSummary stay={stay} /> */}
+                <StayDetailsAmenities amenities={stay.amenities} />
+                {/* <StayDetailsReservation stay={stay} /> */}
             </section>
             <section className="stay-additional-info">
-                <StayDetailsReviews stay={stay} />
-                <StayDetailsMap stay={stay} />
-            </section> */}
+                {/* <StayDetailsReviews stay={stay} /> */}
+                {/* <StayDetailsMap stay={stay} /> */}
+            </section>
         </section>
     )
 
