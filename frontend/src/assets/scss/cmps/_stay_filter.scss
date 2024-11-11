@@ -1,0 +1,411 @@
+.stay-filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: $gray1;
+  border: 1px solid $gray3;
+  border-radius: 40px;
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  height: rem(66px);
+  max-width: rem(850px);
+  background-color:$gray3;
+  .active{
+  }
+
+  .date-text{
+    color: $gray7;
+    font-weight: 500;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba($gray3, 0.18);
+  }
+
+  .region-search,
+  .date-picker-wrapper,
+  .search-container {
+
+    &:hover {
+      background-color: $gray3;
+      border-radius: rem(32px);
+    }
+  }
+
+  .selected {
+    background-color: $gray1;
+    border-radius: rem(32px);
+  }
+  .not-selected {
+    background-color: $gray3;
+  }
+
+  .region-search {
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    border-radius: rem(32px);
+
+    span {
+      font-size: rem(14px);
+      color: $gray7;
+    }
+
+    input[type='text'] {
+      border: none;
+      font-size: rem(14px);
+      color: $gray7;
+      height: 80%;
+      outline: none;
+      border-radius: 32px;
+
+      &::placeholder {
+        color: $gray5;
+      }
+    }
+
+    .region-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      width: 200%;
+      box-shadow: 0 3px 12px 0 rgb(0 0 0/0.15);
+      background: $gray1;
+      border-radius: rem(32px);
+      padding: rem(32px);
+      z-index: 1000;
+
+      h3 {
+        font-size: rem(14px);
+        font-weight: 550;
+        margin-bottom: rem(30px);
+        color: $gray7;
+      }
+
+      .region-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(16px);
+        img{
+          border: 1px solid $gray3;
+        }
+      }
+
+      .region-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-items: flex-start;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: rem(8px);
+          margin-bottom: rem(4px);
+        }
+
+        span {
+          font-size: rem(14px);
+          color: $gray7;
+          font-weight: 200;
+          align-self: flex-start;
+        }
+      }
+    }
+  }
+
+  .date-picker-container {
+    display: flex;
+    height: 100%;
+    max-width: rem(350px);
+    z-index: 1000;
+
+    .divider {
+      height: rem(32px);
+      width: rem(1px);
+      background-color: $gray3;
+      margin: 0 rem(1px);
+      align-self: center;
+      transition: opacity 0.3s ease;
+
+    }
+
+    .date-picker-wrapper {
+      padding: rem(10px) rem(24px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      flex: 1;
+      width: rem(140px);
+
+      label {
+        font-size: rem(12px);
+        font-weight: 600;
+        color: $gray7;
+      }
+
+      .react-datepicker-wrapper {
+        input {
+          border: none;
+          font-size: rem(16px);
+          color: $gray7;
+          outline: none;
+          width: 100%;
+          cursor: pointer;
+          background: transparent;
+          padding: rem(4px) 0;
+
+          &::placeholder {
+            color: $gray7;
+          }
+        }
+      }
+    }
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    background-color: $gray3;
+    border-radius: rem(32px);
+    height: 100%;
+    padding: rem(8px);
+    width: rem(284px);
+    justify-content: space-between;
+  }
+
+  .guests-selector {
+    position: relative;
+    height: 100%;
+    z-index: 1000;
+
+    .guests-button {
+      background: none;
+      border: none;
+      padding: rem(7px) rem(1px);
+      font-size: rem(14px);
+      color: $gray7;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100%;
+      min-width: rem(200px);
+      border-radius: rem(32px);
+
+      &:hover {
+        background-color: $gray3;
+      }
+
+      span:first-child {
+        font-size: rem(12px);
+        font-weight: 600;
+        margin-bottom: rem(6px);
+        margin-left: rem(20px);
+      }
+
+      span:last-child {
+        color: $gray7;
+        font-size: rem(14px);
+        margin-left: rem(20px);
+      }
+    }
+
+    .guests-dropdown {
+      position: absolute;
+      top: calc(100% + 20px);
+      right: -52px;
+      background-color: $gray1;
+      border-radius: rem(32px);
+
+      box-shadow: 0 2px 16px rgba($gray3, 0.12);
+      padding: rem(16px) rem(32px);
+      min-width: rem(400px);
+      display: none;
+
+      &.active {
+        display: block;
+      }
+
+      >div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: rem(24px) 0;
+        border-bottom: 1px solid $gray3;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .guest-type {
+          label {
+            font-size: rem(16px);
+            font-weight: 600;
+            color: $gray7;
+            margin-bottom: rem(4px);
+            display: block;
+          }
+
+          span {
+            font-size: rem(14px);
+            color: $gray5;
+          }
+        }
+
+        .guest-counter {
+          display: flex;
+          align-items: center;
+
+          button {
+            width: rem(32px);
+            height: rem(32px);
+
+            border-radius: 50%;
+            border: 1px solid $gray7;
+            background: none;
+            font-size: rem(16px);
+            color: $gray7;
+            opacity: 0.7;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover:not(:disabled) {
+              border-color: $gray3;
+              color: $gray3;
+            }
+
+            &:disabled {
+              opacity: 0.3;
+              cursor: not-allowed;
+            }
+          }
+
+          span {
+            margin: 0 rem(16px);
+            font-size: rem(16px);
+            color: $gray5;
+            min-width: rem(20px);
+            text-align: center;
+            padding-left: rem(10px);
+          }
+        }
+      }
+    }
+  }
+
+  .search-button {
+    background-color: $branding;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($gray1, 10%);
+    }
+
+    svg {
+      width: rem(14px);
+      height: rem(14px);
+      fill: $gray1;
+    }
+  }
+
+  .divider {
+    height: rem(32px);
+    width: rem(1px);
+    background-color: $gray3;
+    
+    margin: 0 1px;
+  }
+
+  .search-item {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 30px;
+    position: relative;
+    width: rem(284px);
+
+    span {
+      font-size: rem(12px);
+      font-weight: 600;
+      color: $gray7;
+      margin-top: rem(4px);
+    }
+
+    input {
+      border: none;
+      outline: none;
+      font-size: rem(14px);
+      color: $gray4;
+      width: 100%;
+      background: transparent;
+      margin-top: rem(-4px);
+    }
+  }
+
+  .divider1,
+  .divider2,
+  .divider3 {
+    transition: opacity 0.3s ease;
+    
+  }
+
+  .region-search:hover {
+    &~.divider1 {
+      opacity: 0;
+    }
+  }
+
+  .search-item.region-search:hover+.divider,
+  .date-picker-container:hover+.divider {
+    opacity: 0;
+  }
+}
+
+.date-filter {
+  position: absolute;
+  top: 120%;
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.15);
+  width: 53rem;
+  height: 31rem;
+  border-radius: 24px;
+  color: $gray3;
+  background-color: white;
+  z-index: 1000000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.rdrDateRangePickerWrapper {
+  & span {
+    color: $gray3;
+  }
+
+  & .rdrDefinedRangesWrapper {
+    position: absolute;
+  }
+}
+
+.rdrMonths {
+  font-size: 1.2em;
+}
+
+.rdrDays {
+  font-size: 1.2em;
+}
+
+.rdrDateRange {
+  color: rebeccapurple;
+}

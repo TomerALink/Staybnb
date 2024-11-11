@@ -1,32 +1,37 @@
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 import { useEffect, useRef, useState } from "react"
-import { utilService } from "../services/util.service.js"
+import { useDispatch } from "react-redux"
+import { SET_FILTER_BY } from "../store/reducers/stay.reducer.js"
+import { useSearchParams } from 'react-router-dom'
 
 
-
-export function TagFilter({ filterBy, onSetFilter }) {
+export function TagFilter({ filterBy, defaultFilter }) {
 
     const scrollTags = useRef(null);
     const leftBtn = useRef(null);
     const rightBtn = useRef(null);
     const [selectedItem, setSelectedItem] = useState(null);
-    const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
+
+    const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
+    const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
-        onSetFilter.current(filterByToEdit)
-    }, [filterByToEdit])
+        dispatch({ type: SET_FILTER_BY, filterBy: { ...defaultFilter } });
+    }, [])
 
-    function onFilterCliced(value, index) {
-    
-        setSelectedItem(index);
-        setFilterByToEdit((prevFilter) => ({ ...prevFilter, tag: value }))
-        console.log(filterByToEdit)
+
+    function onSetFilterBy(filterBy) {
+        dispatch({ type: SET_FILTER_BY, filterBy })
+        setSearchParams({ ...filterBy })
     }
 
- 
+    function onFilterClicked(value, index) {
+        setFilterToEdit({ ...filterToEdit, tag: value })
+        onSetFilterBy(filterToEdit)
+        setSelectedItem(index);
+    }
+
+
     const filters = [
         {
             name: 'OMG!',
@@ -280,26 +285,26 @@ export function TagFilter({ filterBy, onSetFilter }) {
 
     let left_pos = 0;
     function scroll(direction) {
-        switch(direction){
-            case -1: 
-            left_pos+=2000
-            leftBtn.current.style.display = 'block'
-            scrollTags.current.scrollBy({
-                left: 2000 , 
-                behavior: 'smooth', 
-            });
-            break;
-            
-            case 1: 
-            left_pos-=2000
-            scrollTags.current.scrollBy({
-                left: -2000 , 
-                behavior: 'smooth', 
-            });
-            break;
+        switch (direction) {
+            case -1:
+                left_pos += 2000
+                leftBtn.current.style.display = 'block'
+                scrollTags.current.scrollBy({
+                    left: 2000,
+                    behavior: 'smooth',
+                });
+                break;
+
+            case 1:
+                left_pos -= 2000
+                scrollTags.current.scrollBy({
+                    left: -2000,
+                    behavior: 'smooth',
+                });
+                break;
         }
-        leftBtn.current.style.display = left_pos < 1 ?  "none" : "block"
-        
+        leftBtn.current.style.display = left_pos < 1 ? "none" : "block"
+
     }
 
     const settings = {
@@ -313,15 +318,13 @@ export function TagFilter({ filterBy, onSetFilter }) {
 
     return (
         <div className="tag_filter">
-            
-             <button style={{display:'none'}} ref={leftBtn} className="scroll-btn left" onClick={() => scroll(1)}>
-          <img src="/src/assets/img/left.svg" alt="" />
-        </button>
-            <div ref={scrollTags} className='tag'>
-          
 
+            <button style={{ display: 'none' }} ref={leftBtn} className="scroll-btn left" onClick={() => scroll(1)}>
+                <img src="/src/assets/img/left.svg" alt="" />
+            </button>
+            <div ref={scrollTags} className='tag'>
                 {filters.map((tag, index) =>
-                    <div key={tag.name} onClick={() => onFilterCliced(tag.name, index)} className={`tag-card ${selectedItem === index ? 'selected' : ''}`}>
+                    <div key={tag.name} onClick={() => onFilterClicked(tag.name, index)} className={`tag-card ${selectedItem === index ? 'selected' : ''}`}>
                         <div>
                             {<img className='tag-icon' src={tag.img} alt="" />}
                         </div>
@@ -332,13 +335,10 @@ export function TagFilter({ filterBy, onSetFilter }) {
                         </div>
                     </div>
                 )}
-       
 
             </div>
-            <button  ref={rightBtn} className="scroll-btn right" onClick={() => scroll(-1)}>
-          <img src="/src/assets/img/right.svg" alt="" />
-        </button>
-
-
+            <button ref={rightBtn} className="scroll-btn right" onClick={() => scroll(-1)}>
+                <img src="/src/assets/img/right.svg" alt="" />
+            </button>
         </div>)
 }

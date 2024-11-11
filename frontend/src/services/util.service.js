@@ -7,8 +7,12 @@ export const utilService = {
   animateCSS,
   debounce,
   getAssetSrc,
+
+  getRandomDecimal
+
   pluralize,
   calcAvgRating,
+
 }
 
 function makeId(length = 6) {
@@ -116,6 +120,15 @@ function getAssetSrc(name) {
   return mod.default
 }
 
+
+
+function getRandomDecimal() {
+  const randomDecimal = (Math.random() * (5 - 4) + 4).toFixed(2)
+
+  // If the decimal has ".00", format it with 1 digit
+  return randomDecimal.endsWith("00") ? parseFloat(randomDecimal).toFixed(1) : randomDecimal
+}
+
 function pluralize(count, singular, plural = null) {
   if (count === 1) return `${count} ${singular}`
   return `${count} ${plural || singular + 's'}`
@@ -128,3 +141,4 @@ function calcAvgRating(reviews) {
   const sum = reviews.reduce((acc, review) => acc + review.rate, 0)
   return (sum / reviews.length).toFixed(2)
 }
+
