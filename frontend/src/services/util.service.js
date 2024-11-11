@@ -7,6 +7,8 @@ export const utilService = {
   animateCSS,
   debounce,
   getAssetSrc,
+  pluralize,
+  calcAvgRating,
 }
 
 function makeId(length = 6) {
@@ -112,4 +114,17 @@ function getAssetSrc(name) {
   const modules = import.meta.globEager('/src/assets/img/*')
   const mod = modules[path]
   return mod.default
+}
+
+function pluralize(count, singular, plural = null) {
+  if (count === 1) return `${count} ${singular}`
+  return `${count} ${plural || singular + 's'}`
+}
+
+function calcAvgRating(reviews) {
+  if (!reviews || reviews.length === 0) {
+    return 'New'
+  }
+  const sum = reviews.reduce((acc, review) => acc + review.rate, 0)
+  return (sum / reviews.length).toFixed(2)
 }

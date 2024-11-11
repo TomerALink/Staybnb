@@ -1,9 +1,9 @@
 
-export function StayDetailsShareSave({ stay }) {
+export function StayDetailsShareSave({ name }) {
 
     return (
         <div className="stay-share-save">
-            <h1 className="stay-title">{stay.name}</h1>
+            <h1 className="stay-title">{name}</h1>
             <div className="share-save-btns">
                 <button className="btn share">
                     <img src="/src/assets/img/share.svg" alt="share-icon" />

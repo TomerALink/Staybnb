@@ -1,0 +1,138 @@
+.stay-host-info {
+    display: flex;
+    flex-direction: column;
+    padding: rem(24px) 0;
+    border-top: 1px solid $gray6;
+    border-bottom: 1px solid $gray6;
+    font-family: AirbnbCereal_W_Bk;
+
+    .guest-favorite {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        padding: rem(16px) rem(24px);
+        border: 1px solid $gray3;
+        border-radius: rem(12px);
+        width: max-content;
+        margin-bottom: rem(24px);
+
+        .guest-favorite-icon {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            color: $gray6;
+            white-space: break-spaces;
+            padding-right: 24px;
+
+            img {
+                width: fit-content;
+                height: fit-content;
+            }
+
+            .label-text {
+                text-align: center;
+                font-size: 15px;
+                font-weight: bold;
+                line-height: 16px;
+                width: min-content;
+                padding: 5px;
+            }
+        }
+
+        .guest-favorite-text {
+            color: $gray6;
+            font-size: rem(15px);
+            font-weight: bold;
+            line-height: rem(16px);
+            min-width: 300px;
+            width: min-content;
+        }
+
+        .guest-favorite-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .rating {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                text-align: center;
+                width: max-content;
+
+                .rating-value {
+                    color: $gray6;
+                    font-size: rem(22px);
+                    font-weight: bold;
+                }
+
+                .rating-stars {
+                    display: flex;
+                    gap: 2px;
+
+                    img {
+                        width: rem(10px);
+                        height: rem(10px);
+                    }
+                }
+            }
+
+            .divider {
+                height: 50px;
+                width: 1px;
+                background-color: $gray3;
+                margin: 0 rem(20px);
+            }
+
+            .reviews {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .review-count {
+                    font-size: rem(22px);
+                    font-weight: bold;
+                    color: $gray6;
+                }
+
+                .review-text {
+                    font-size: rem(13px);
+                    color: $gray6;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .host-concise-info {
+        display: flex;
+        align-items: center;
+        font-family: AirbnbCereal_W_Lt;
+        color: $gray6;
+
+        img {
+            width: rem(56px);
+            height: rem(56px);
+            border-radius: 50%;
+            margin-right: rem(12px);
+            object-fit: cover;
+        }
+
+        p {
+            margin: 0;
+
+            .host-hosted-by {
+                display: block;
+                font-size: rem(16px);
+                font-weight: 600;
+            }
+
+            .host-hosted-years {
+                display: block;
+                font-size: rem(14px);
+                font-weight: 400;
+
+            }
+        }
+    }
+}
