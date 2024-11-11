@@ -5,7 +5,7 @@ import { store } from "../store.js";
 
 export function loadStays() {
     const filterBy = store.getState().stayModule.filterBy
-    store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+    // store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     return stayService.query(filterBy)
         .then(stays => {
             store.dispatch({ type: SET_STAYS, stays })

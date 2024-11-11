@@ -83,6 +83,7 @@ export function stayReducer(state = initialState, action = {}) {
                 ...state,
                 stays: [...state.lastStays]
             }
+            
 
 
         default:

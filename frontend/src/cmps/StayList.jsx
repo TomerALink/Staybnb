@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { StayPreview } from './StayPreview'
 import { loadStays, setFilterBy } from '../store/actions/stay.actions.js'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 export function StayList() {
@@ -29,7 +30,9 @@ export function StayList() {
             <ul className="list">
                 {stays.map(stay =>
                     <li key={stay._id}>
+                        <Link to={`/stay/details/${stay._id}`}>
                         <StayPreview stay={stay} />
+                        </Link>
 
                     </li>)
                 }

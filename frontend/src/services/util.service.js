@@ -7,6 +7,7 @@ export const utilService = {
   animateCSS,
   debounce,
   getAssetSrc,
+  getRandomDecimal
 }
 
 function makeId(length = 6) {
@@ -112,4 +113,12 @@ function getAssetSrc(name) {
   const modules = import.meta.globEager('/src/assets/img/*')
   const mod = modules[path]
   return mod.default
+}
+
+
+function getRandomDecimal() {
+  const randomDecimal = (Math.random() * (5 - 4) + 4).toFixed(2)
+
+  // If the decimal has ".00", format it with 1 digit
+  return randomDecimal.endsWith("00") ? parseFloat(randomDecimal).toFixed(1) : randomDecimal
 }
