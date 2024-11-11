@@ -1,0 +1,72 @@
+.tag_filter {
+    border-top: 1px solid $gray3;
+    width: 3/4;
+    margin: auto;
+    font-size: .75em;
+    color: $gray5;
+    display: flex;
+    position: relative;
+
+
+    .scroll-btn {
+        display: block;
+        background-color: $gray1;
+        width: rem(30px);
+        height: rem(30px);
+        transform: translateY(100%);
+        margin: 1em;
+        align-items: center;
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid $gray3;
+        box-shadow: none;
+
+        img{
+            width: em(15px);
+            height: em(15px);
+        }
+    }
+
+  
+
+
+    .scroll-btn.right {
+        right: 0;
+    }
+
+    .tag {
+        margin-top: rem(20px);
+        display: flex;
+        white-space: nowrap;
+        width: 100vw;
+        align-items: center;
+        padding: rem(20px) rem(20px);
+        scroll-behavior: smooth;
+        flex-grow: 1;
+        overflow-x: hidden;
+        white-space: nowrap;
+    }
+    
+    .tag-card {
+        padding: 0 40px;
+        height: 50px;
+        width: 100px;
+        text-align: center;
+
+        display: grid;
+        justify-content: center;
+
+        
+    }
+
+    .selected {
+        border-bottom: solid 3px #000
+    }
+    .tag-icon {
+
+        height: 25px;
+        width: 25px;
+        stroke: $gray5;
+
+    }
+}
