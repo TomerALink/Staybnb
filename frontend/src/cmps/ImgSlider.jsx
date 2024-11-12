@@ -8,22 +8,24 @@ export default function SimpleSlider({ imgUrls, isOnWishList, addToWishList }) {
 
 
   function showPrevImg(ev) {
+    ev.stopPropagation()
     if (imgIndex === 0) return
     setImgIndex(index => {
       return imgIndex - 1
     })
-    ev.stopPropagation()
   }
 
   function showNextImg(ev) {
+    // debugger
+    ev.stopPropagation()
     if (imgIndex === imgUrls.length - 1) return
     setImgIndex(index => {
       return imgIndex + 1
     })
-    ev.stopPropagation()
   }
 
-  function onHeartCliked(){
+  function onHeartCliked(ev){
+    ev.stopPropagation()
     setonWishList(!onWishList)
     addToWishList(onWishList)
   }
@@ -35,7 +37,7 @@ export default function SimpleSlider({ imgUrls, isOnWishList, addToWishList }) {
 
   return (
     <div className="img-slider">
-      <svg onClick={() => onHeartCliked(this)} xmlns="http://www.w3.org/2000/svg"
+      <svg onClick={(event) => onHeartCliked(event,this)} xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 32 32" aria-hidden="true"
         role="presentation" focusable="false"
         className={`stay-preview-haert-icon ${wishListClass}`}
@@ -47,12 +49,12 @@ export default function SimpleSlider({ imgUrls, isOnWishList, addToWishList }) {
         ))}
       </div>
       {imgIndex > 0 &&
-        <button onClick={()=>showPrevImg(event)} className="btn-img-slider" style={{ left: 0 }}>
+        <button onClick={(event)=>showPrevImg(event)} className="btn-img-slider" style={{ left: 0 }}>
           <img src="/src/assets/img/left.svg" alt="" />
         </button>
       }
       {imgIndex < imgUrls.length - 1 &&
-        <button onClick={()=>showNextImg(event)} className="btn-img-slider" style={{ right: 0 }}>
+        <button onClick={(event)=>showNextImg(event)} className="btn-img-slider" style={{ right: 0 }}>
           <img src="/src/assets/img/right.svg" alt="" />
         </button>
       }
