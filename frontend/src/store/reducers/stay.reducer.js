@@ -7,19 +7,19 @@ export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const STAY_UNDO = 'STAY_UNDO'
 
-//* Shopping stayt
-export const TOGGLE_CART_IS_SHOWN = 'TOGGLE_CART_IS_SHOWN'
-export const ADD_STAY_TO_CART = 'ADD_STAY_TO_CART'
-export const REMOVE_STAY_FROM_CART = 'REMOVE_STAY_FROM_CART'
-export const CLEAR_CART = 'CLEAR_CART'
+//* Wish list 
+export const TOGGLE_WISH_LIST_IS_SHOWN = 'TOGGLE_WISH_LIST_IS_SHOWN'
+export const ADD_STAY_TO_WISH_LIST = 'ADD_STAY_TO_WISH_LIST'
+export const REMOVE_STAY_FROM_WISH_LIST = 'REMOVE_STAY_FROM_WISH_LIST'
+export const CLEAR_WISH_LIST = 'CLEAR_WISH_LIST'
 
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
     stays: [],
-    isCartShown: false,
-    shoppingCart: [],
+    isWishListShown: false,
+    wishList: [],
     isLoading: false,
     filterBy: stayService.getDefaultFilter(),
     lastStays: []
@@ -49,23 +49,23 @@ export function stayReducer(state = initialState, action = {}) {
                 stays: state.stays.map(stay => stay._id === action.stay._id ? action.stay : stay)
             }
 
-        //* Shopping stayt
-        case TOGGLE_CART_IS_SHOWN:
-            return { ...state, isCartShown: !state.isCartShown }
+        //* WISH_LIST
+        case TOGGLE_WISH_LIST_IS_SHOWN:
+            return { ...state, isWishListShown: !state.isWishListShown }
 
-        case ADD_STAY_TO_CART:
+        case ADD_STAY_TO_WISH_LIST:
             return {
                 ...state,
-                shoppingCart: [...state.shoppingCart, action.stay]
+                wishList: [...state.wishList, action.stay]
             }
 
-        case REMOVE_STAY_FROM_CART:
-            const shoppingCart = state.shoppingCart.filter(stay => stay._id !== action.stayId)
-            return { ...state, shoppingCart }
+        case REMOVE_STAY_FROM_WISH_LIST:
+            const wishList = state.wishList.filter(stay => stay._id !== action.stayId)
+            return { ...state, wishList }
 
 
-        case CLEAR_CART:
-            return { ...state, shoppingCart: [] }
+        case CLEAR_WISH_LIST:
+            return { ...state, wishList: [] }
 
         case SET_FILTER_BY:
             return {
