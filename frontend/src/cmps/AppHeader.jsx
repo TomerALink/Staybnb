@@ -3,12 +3,12 @@ import { Logo } from './Logo.jsx'
 import { TagFilter } from "../cmps/TagFilterCarousel"
 import { StayFilter } from './StayFilter.jsx'
 import { stayService } from '../services/stay.service.js'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { SET_FILTER_BY } from "../store/reducers/stay.reducer.js"
 export function AppHeader() {
 
 	const location = useLocation()
-	
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	// Special hook for accessing search-params:
@@ -24,6 +24,10 @@ export function AppHeader() {
 		dispatch({ type: SET_FILTER_BY, filterBy })
 	}
 
+	function onAirbnbYourHomeCliced() {
+
+		navigate('/stay/add')
+	}
 	return (
 		<header className="app-header full">
 			<section className="top-header">
@@ -33,7 +37,7 @@ export function AppHeader() {
 					<button className="btn">Experiences</button>
 				</section>
 				<div>
-					<button className="btn btn-active airbnb-your-home">Airbnb your home</button>
+					<button onClick={onAirbnbYourHomeCliced} className="btn btn-active airbnb-your-home">Airbnb your home</button>
 					<button className="btn btn-active"><img className='i18' src="/src/assets/img/i18.svg" alt="" /></button>
 					<button className="btn btn-shadow"><img className='burger' src="/src/assets/img/burger.svg" alt="" /><img className='avatar' src="/src/assets/img/avatar.svg" alt="" /></button>
 				</div>
@@ -41,10 +45,10 @@ export function AppHeader() {
 			<section className='serch-filter-container'>
 				<StayFilter filterBy={filterBy} defaultFilter={defaultFilter} />
 			</section>
-			{!location.pathname.startsWith('/stay/details') &&
-			<section className="bottom-header">
-				<TagFilter filterBy={filterBy} onSetFilter={onSetFilterBy} defaultFilter={defaultFilter} />
-			</section>
+			{!location.pathname.startsWith('/stay/') &&
+				<section className="bottom-header">
+					<TagFilter filterBy={filterBy} onSetFilter={onSetFilterBy} defaultFilter={defaultFilter} />
+				</section>
 			}
 
 		</header>
