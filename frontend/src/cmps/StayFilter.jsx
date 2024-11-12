@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
@@ -10,7 +10,7 @@ import {  SET_FILTER_BY  } from "../store/reducers/stay.reducer.js"
 export function StayFilter({ filterBy, defaultFilter }) {
 
   const dispatch = useDispatch()
-
+  const dropdownRef = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
@@ -70,6 +70,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
     setDateRange([ranges.selection])
   }
 
+  
   function toggleGuestsDropdown() {
 
     closeAllDropdowns()
@@ -142,9 +143,24 @@ export function StayFilter({ filterBy, defaultFilter }) {
     },
   ]
 
+  useEffect(() => {
+    // Handler to call when clicking outside
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        closeAllDropdowns();
+      }
+    }
+
+    // Bind the event listener
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on cleanup
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
   return (
 
-    <section className="stay-filter">
+    <section  ref={dropdownRef} className="stay-filter">
       <div className={`search-item region-search ${selectedItem == 'region-search' ? 'selected' : ''}`}>
         <span>Where</span>
         <input
