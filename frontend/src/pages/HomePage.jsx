@@ -1,3 +1,4 @@
+import { AppHeader } from "../cmps/AppHeader";
 import { StayList } from "../cmps/StayList";
 
 export function HomePage() {
@@ -6,7 +7,7 @@ export function HomePage() {
 
 {/* //      <h1>Staybnb</h1>
 //      <StayPreview/> */}
-
+<AppHeader/>
 <StayList/>
     </section>
   )
