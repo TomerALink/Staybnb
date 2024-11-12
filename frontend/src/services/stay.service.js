@@ -79,9 +79,15 @@ function getEmptyStay() {
   return {
     name: "",
     type: "",
-    imgUrls: [],
+    imgUrls: [
+      '/src/assets/img/asset 72.webp',
+      '/src/assets/img/asset 71.webp',
+      '/src/assets/img/asset 70.webp',
+      '/src/assets/img/asset 69.webp',
+      '/src/assets/img/asset 68.webp',
+    ],
     price: 0,
-    summary: "",
+    summary: "New on Staybnb!",
     capacity: 1,
     amenities: [],
     bathrooms: 1,

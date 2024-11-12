@@ -6,6 +6,7 @@ import { store } from './store/store.js'
 import './assets/scss/main.scss'
 import { HomePage } from './pages/HomePage'
 import { StayDetails } from './pages/StayDetails'
+import { AddStay } from './pages/AddStay.jsx'
 
 
 export function App() {
@@ -20,6 +21,7 @@ export function App() {
             <Routes>
               <Route element={<HomePage />} path="/" />
               <Route path="/stay/details/:stayId" element={<StayDetails />} />
+              <Route path="/stay/add" element={<AddStay/>} />
             </Routes>
           </main>
           <AppFooter />
