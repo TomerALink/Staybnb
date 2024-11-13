@@ -1,10 +1,11 @@
 import { utilService } from '../../services/util.service.js'
-
+import { useState } from 'react'
 
 export function StayDetailsReviews({ reviews }) {
     const avgRating = utilService.calcAvgRating(reviews)
     const numReviews = !!reviews.length ? reviews.length : 0
     const maxShowReviews = 6
+    const maxLenReview = 150
 
     const [showAll, setShowAll] = useState(false)
 
@@ -12,12 +13,24 @@ export function StayDetailsReviews({ reviews }) {
         setShowAll(!showAll)
     }
 
+    function reviewToShow(reviewTxt) {
+        const isLongText = reviewTxt.length > maxLenReview
+        const textToShow = (!isLongText) ? reviewTxt : (reviewTxt.substring(0, maxLenReview)) + '...'
+        return (
+            <div className="review-content">
+                <p>{textToShow}</p>
+                {/* {console.log('This is rendered')} */}
+                {isLongText && (<button className="show-all-reviews" onclick={onToggleModal}>Show more</button>)}
+            </div>
+        )
+    }
+
     if (numReviews > 0) {
         return (
             <div className="stay-reviews" id="reviews">
                 <span className="reviews-main-header">
                     <img src="/src/assets/img/star.svg" alt="star-icon" />
-                    {avgRating}{' · '}{utilService.pluralize(numReviews, 'reviews')}
+                    {avgRating}{' · '}{utilService.pluralize(numReviews, 'review')}
                 </span>
 
                 <div className="reviews-list">
@@ -33,11 +46,17 @@ export function StayDetailsReviews({ reviews }) {
 
                             <div className="review-concise-info">
                                 <span className="rating-stars">
-                                    {[...Array(Math.round(avgRating))].map((_, index) => (
+                                    {[...Array(Math.round(review.rate))].map((_, index) => (
                                         <img key={index} src="/src/assets/img/star.svg" className="present-star" alt="star icon" />
                                     ))}
-                                    {[...Array(5 - Math.round(avgRating))].map((_, index) => (
-                                        <img key={index} src="/src/assets/img/star.svg" className="missing-star" alt="star icon" />
+                                    {[...Array(5 - Math.round(review.rate))].map((_, index) => (
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 32 32" aria-hidden="true"
+                                            role="presentation" focusable="false"
+                                            className="missing-star"
+                                        >
+                                            <path d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
                                     ))}
                                 </span>
                                 {' · '}
@@ -45,20 +64,19 @@ export function StayDetailsReviews({ reviews }) {
                                 {' · '}
                                 <span className="review-duration">{utilService.getRandomStayDurationReview()}</span>
                             </div>
-                            <div className="review-content">
-                                <p>{reviewToShow(review.txt)}</p>
-                                {/* here should be a condition to */}
-                                <button className="show-all-reviews" onclick={onToggleModal}>Read more</button>
-                            </div>
+                            {reviewToShow(review.txt)}
+                            {/* <button className="show-all-reviews" onclick={onToggleModal}>Read more</button> */}
                         </article>
                     ))}
                 </div>
+                {/* {console.log('showAll', showAll)} */}
 
 
-                {/* entrer condition more than 6 reviews */}
-                <button className="show-all-reviews" onClick={onToggleModal}>
-                    {`Show all ${reviews.length} reviews`}
-                </button>
+                {(numReviews > maxShowReviews) && (
+                    <button className="show-all-reviews" onClick={onToggleModal}>
+                        {`Show all ${reviews.length} reviews`}
+                    </button>
+                )}
 
                 {
                     showAll && (
@@ -71,9 +89,8 @@ export function StayDetailsReviews({ reviews }) {
                                 <div className="stay-reviews" id="reviews">
                                     <span className="reviews-main-header">
                                         <img src="/src/assets/img/star.svg" alt="star-icon" />
-                                        {avgRating}{' · '}{utilService.pluralize(numReviews, 'reviews')}
+                                        {avgRating}{' · '}{utilService.pluralize(numReviews, 'review')}
                                     </span>
-
                                     <div className="reviews-list">
                                         {reviews.map((review, index) => (
                                             <article className="review" key={index}>
@@ -88,11 +105,17 @@ export function StayDetailsReviews({ reviews }) {
                                                 <div className="review-concise-info">
 
                                                     <span className="rating-stars">
-                                                        {[...Array(Math.round(avgRating))].map((_, index) => (
+                                                        {[...Array(Math.round(review.rate))].map((_, index) => (
                                                             <img key={index} src="/src/assets/img/star.svg" className="present-star" alt="star icon" />
                                                         ))}
-                                                        {[...Array(5 - Math.round(avgRating))].map((_, index) => (
-                                                            <img key={index} src="/src/assets/img/star.svg" className="missing-star" alt="star icon" />
+                                                        {[...Array(5 - Math.round(review.rate))].map((_, index) => (
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 32 32" aria-hidden="true"
+                                                                role="presentation" focusable="false"
+                                                                className="missing-star"
+                                                            >
+                                                                <path d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                                            </svg>
                                                         ))}
                                                     </span>
                                                     {' · '}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export function StayDetailsAmenities({ amenities }) {
 
@@ -60,9 +60,7 @@ export function StayDetailsAmenities({ amenities }) {
         "Doorman": "building-stuff"
     }
     const maxShowAmenities = 10
-
     const [showAll, setShowAll] = useState(false)
-
 
     function onToggleModal() {
         setShowAll(!showAll)

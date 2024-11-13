@@ -9,6 +9,8 @@ export const utilService = {
   getAssetSrc,
   pluralize,
   calcAvgRating,
+  getMonthReview,
+  getRandomStayDurationReview
 }
 
 function makeId(length = 6) {
@@ -126,5 +128,17 @@ function calcAvgRating(reviews) {
     return 'New'
   }
   const sum = reviews.reduce((acc, review) => acc + review.rate, 0)
-  return (sum / reviews.length).toFixed(2)
+  const numDecimal = ((100 * sum / reviews.length) % 100 === 0) ? 1 : 2
+  return (sum / reviews.length).toFixed(numDecimal)
+}
+
+function getMonthReview(date) {
+  const dateFormat = new Date(Date.parse(date))
+  return dateFormat.toLocaleString('default', { month: 'long' })
+}
+
+function getRandomStayDurationReview() {
+  const stayDuration = ['Stayed one night', 'Stayed a few nights', 'Stayed over a week', 'Stayed about a week']
+  const idx = getRandomIntInclusive(0, stayDuration.length - 1)
+  return stayDuration[idx]
 }

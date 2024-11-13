@@ -19,7 +19,7 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
                         <div className="rating">
                             <span className="rating-value">{avgRating}</span>
                             <span className="rating-stars">
-                                {[...Array(Math.floor(avgRating))].map((_, index) => (
+                                {[...Array(Math.round(avgRating))].map((_, index) => (
                                     <img key={index} src="/src/assets/img/star.svg" alt="star icon" />
                                 ))}
                             </span>
@@ -27,7 +27,7 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
                         <div className="divider"></div>
                         <div className="reviews">
                             <span className="review-count">{numReviews}</span>
-                            <span className="review-text">Reviews</span>
+                            <span className="review-text">{utilService.pluralize(numReviews, 'Review').split(' ')[1]}</span>
                         </div>
                     </div>
                 </div >
@@ -39,7 +39,7 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
                     <span className="host-hosted-by">
                         {`Hosted by ${host.fullname}`}
                     </span>
-                    <span  className="host-hosted-years">
+                    <span className="host-hosted-years">
                         {(host.isSuperhost) && ('SuperHost · ')}
                         {utilService.getRandomIntInclusive(2, 6)} years hosting
                     </span>

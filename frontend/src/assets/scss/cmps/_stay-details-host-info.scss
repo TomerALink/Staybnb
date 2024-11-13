@@ -110,10 +110,10 @@
         color: $gray6;
 
         img {
-            width: rem(56px);
-            height: rem(56px);
+            width: rem(40px);
+            height: rem(40px);
             border-radius: 50%;
-            margin-right: rem(12px);
+            margin-right: rem(20px);
             object-fit: cover;
         }
 
@@ -123,14 +123,12 @@
             .host-hosted-by {
                 display: block;
                 font-size: rem(16px);
-                font-weight: 600;
+                font-weight: bold;
             }
 
             .host-hosted-years {
                 display: block;
                 font-size: rem(14px);
-                font-weight: 400;
-
             }
         }
     }
