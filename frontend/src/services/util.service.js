@@ -137,7 +137,7 @@ function pluralize(count, singular, plural = null) {
 
 function calcAvgRating(reviews) {
   if (!reviews || reviews.length === 0) {
-    return 'New'
+    return null
   }
   const sum = reviews.reduce((acc, review) => acc + review.rate, 0)
   const numDecimal = ((100 * sum / reviews.length) % 100 === 0) ? 1 : 2

@@ -1,7 +1,6 @@
 import { utilService } from "../../services/util.service.js"
 
 export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
-    console.log('avg rating', avgRating)
     return (
         <div className="stay-host-info">
 
@@ -27,7 +26,7 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
                         <div className="divider"></div>
                         <div className="reviews">
                             <span className="review-count">{numReviews}</span>
-                            <span className="review-text">{utilService.pluralize(numReviews, 'Review').split(' ')[1]}</span>
+                            <a href="#reviews" className="review-text">{utilService.pluralize(numReviews, 'Review').split(' ')[1]}</a>
                         </div>
                     </div>
                 </div >
