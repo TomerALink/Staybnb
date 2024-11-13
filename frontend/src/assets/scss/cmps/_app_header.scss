@@ -4,9 +4,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
 
         .stay-experience-btns{
-            margin-left: 12em;
+            margin-left: 9em;
         }
 
         .i18 {
@@ -27,6 +28,13 @@
 
         .airbnb-your-home{
             font-size: em(15px);
+            letter-spacing: -1px;
         }
+    }
+
+    .serch-filter-container{
+        display: grid;
+        justify-content: center;
+        margin-bottom: 1.5em;
     }
 }

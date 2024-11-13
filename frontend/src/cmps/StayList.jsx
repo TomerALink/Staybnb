@@ -3,10 +3,12 @@ import { useEffect } from 'react'
 import { StayPreview } from './StayPreview'
 import { loadStays, setFilterBy } from '../store/actions/stay.actions.js'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 export function StayList() {
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -24,13 +26,16 @@ export function StayList() {
             })
     }, [filterBy])
 
+    function onNavigatToDetiles(id){
+        navigate(`/stay/details/${id}`)
+    }
+
     return <section>
         <div className='list-container'>
             <ul className="list">
                 {stays.map(stay =>
-                    <li key={stay._id}>
-                        <StayPreview stay={stay} />
-
+                    <li onClick={()=>onNavigatToDetiles(stay._id)} key={stay._id}>
+                        <StayPreview  stay={stay} />
                     </li>)
                 }
             </ul>

@@ -4,26 +4,24 @@ import { AppHeader } from '../src/cmps/AppHeader'
 import { AppFooter } from '../src/cmps/AppFooter'
 import { store } from './store/store.js'
 import './assets/scss/main.scss'
-
-// import { store } from './store/store'
 import { HomePage } from './pages/HomePage'
 import { StayDetails } from './pages/StayDetails'
+import { AddStay } from './pages/AddStay.jsx'
 
 
 export function App() {
   return (
     <>
-
      <Provider store={store}>
 
       <Router>
         <section className="main-layout app">
-          <AppHeader />
+          {/* <AppHeader /> */}
           <main>
             <Routes>
               <Route element={<HomePage />} path="/" />
-              {/* <Route element={<StayDetails />} path="/" /> */}
-
+              <Route path="/stay/details/:stayId" element={<StayDetails />} />
+              <Route path="/stay/add" element={<AddStay/>} />
             </Routes>
           </main>
           <AppFooter />
