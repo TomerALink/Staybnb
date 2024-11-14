@@ -1,12 +1,12 @@
 .tag_filter {
-    border-top: 1px solid $gray3;
-    width: 3/4;
     margin: auto;
     font-size: .75em;
     color: $gray5;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     position: relative;
-    // padding: 9px 0;
+    overflow: hidden;
+ 
     
 
 
@@ -43,7 +43,6 @@
 
         display: flex;
         white-space: nowrap;
-        width: 100vw;
         align-items: center;
         // padding-bottom: rem(5px);
         padding-bottom:rem(5px); // rem(5px) rem(5px);

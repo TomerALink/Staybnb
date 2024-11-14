@@ -1,14 +1,14 @@
 .list-container {
-    padding: 0px 80px;
-    margin: 16px 11.5px 72px;
+    // padding: 0px 80px;
+    margin: 16px 0 72px;
 
     .list {
 
         $min-column-size: 332px;
-        $column-count: 6;
+        // $column-count: 6;
 
         display: grid;
-        grid-template-columns: repeat($column-count, minmax($min-column-size, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax($min-column-size, 1fr));
 
         column-gap: 1.45em;
         row-gap: 2.1em;
