@@ -4,6 +4,7 @@ import { StayFilter } from './StayFilter.jsx'
 import { stayService } from '../services/stay.service.js'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { SET_FILTER_BY } from "../store/reducers/stay.reducer.js"
+import { Logo } from "../cmps/Logo.jsx"
 
 
 export function AppHeader() {
