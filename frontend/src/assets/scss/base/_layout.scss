@@ -1,4 +1,12 @@
 .main-layout {
-
+    display: grid;
+    grid-template-columns: 6rem minmax(auto, 1fr) 6rem;
 }
 
+.main-layout > *:not(.full){
+    grid-column: 2;
+}
+
+.main-layout > .full{
+    grid-column: 1/-1;
+}

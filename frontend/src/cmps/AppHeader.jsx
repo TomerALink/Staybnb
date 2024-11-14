@@ -25,11 +25,11 @@ export function AppHeader() {
 	const isScrolled = true
 	return (
 
-		<div className='header-container'>
-			<div className='top-header-container'>
+		<div className='header-container full main-layout'>
+			<div className='top-header-container full'>
 
 
-				<header className="app-header full">
+				<header className="app-header full main-layout">
 					<section className="top-header">
 						<Link to="/"><Logo /></Link>
 
