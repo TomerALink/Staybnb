@@ -13,7 +13,7 @@
 
     .amenities-list {
         display: grid;
-        grid-template-columns: repeat(2, minmax(1px, 1fr));      
+        grid-template-columns: repeat(2, minmax(1px, 1fr));
         gap: rem(16px) rem(24px);
         max-width: rem(650px);
         list-style-type: none;
@@ -37,8 +37,13 @@
         border-radius: rem(8px);
         padding: rem(14px) rem(20px);
         cursor: pointer;
+        font-family: AirbnbCereal_W_Md;
         font-size: rem(16px);
         margin-top: rem(12px);
+
+        &:hover {
+            background-color: $gray2;
+        }
     }
 }
 

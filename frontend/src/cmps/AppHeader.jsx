@@ -1,31 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Logo } from './Logo.jsx'
 import { TagFilter } from "../cmps/TagFilterCarousel"
 import { StayFilter } from './StayFilter.jsx'
 import { stayService } from '../services/stay.service.js'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { SET_FILTER_BY } from "../store/reducers/stay.reducer.js"
 
+
 export function AppHeader() {
 
 	const location = useLocation()
+
 
 	const dispatch = useDispatch()
 
 	// Special hook for accessing search-params:
 	const [searchParams, setSearchParams] = useSearchParams()
-
 	const defaultFilter = stayService.getFilterFromSearchParams(searchParams)
-
-
 	const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
-
 
 	function onSetFilterBy(filterBy) {
 		dispatch({ type: SET_FILTER_BY, filterBy })
 	}
 	const isScrolled = true
 	return (
+
 		<div className='header-container'>
 			<div className='top-header-container'>
 
@@ -58,11 +56,14 @@ export function AppHeader() {
 				</header>
 			</div>
 			{!location.pathname.startsWith('/stay/details') &&
+
 				<section className="bottom-header">
 					<TagFilter filterBy={filterBy} onSetFilter={onSetFilterBy} defaultFilter={defaultFilter} />
 				</section>
 			}
 
+
 		</div>
+
 	)
 }

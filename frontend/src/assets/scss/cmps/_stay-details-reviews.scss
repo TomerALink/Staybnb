@@ -1,0 +1,190 @@
+.stay-reviews {
+    padding: rem(24px) 0;
+    border-top: 1px solid $gray3;
+    font-family: AirbnbCereal_W_Bk;
+
+    .reviews-main-header {
+        margin-top: rem(40px);
+        font-size: rem(26px);
+        font-weight: bold;
+        color: $gray6;
+
+        img {
+            margin-right: rem(12px);
+            width: rem(20px);
+            height: rem(20px);
+        }
+    }
+
+    .reviews-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(1px, 1fr));
+        padding-block-start: rem(40px);
+
+        .review {
+            display: flex;
+            flex-direction: column;
+            margin-right: rem(92px);
+            margin-bottom: rem(32px);
+
+            .review-user-info {
+                display: flex;
+                align-items: center;
+                color: $gray6;
+
+                img {
+                    width: rem(48px);
+                    height: rem(48px);
+                    border-radius: 50%;
+                    margin-right: rem(18px);
+                    object-fit: cover;
+                }
+
+                .user-concise-info {
+                    margin: 0;
+                    font-size: rem(14px);
+
+                    .user-name {
+                        display: block;
+                        margin: 0;
+                        font-size: rem(16px);
+                        font-weight: bold;
+                    }
+
+                    .user-record {
+                        display: block;
+                        margin: 0;
+                        font-size: rem(15px);
+                        color: $gray7;
+                    }
+                }
+            }
+
+            .review-concise-info {
+                display: flex;
+                align-items: center;
+                gap: rem(5px);
+                margin-top: rem(14px);
+                font-size: rem(15px);
+                color: $gray6;
+
+
+                .rating-stars {
+
+                    .present-star {
+                        width: rem(9px);
+                        height: rem(9px);
+                        margin-right: rem(1px);
+                    }
+
+                    .missing-star {
+                        width: rem(9px);
+                        height: rem(9px);
+                        margin-right: rem(1px);
+                        fill: $gray3;
+                    }
+                }
+
+                .review-month {
+                    color: $gray6;
+                }
+
+                .review-duration {
+                    color: $gray5;
+                }
+            }
+
+            .review-content {
+                margin-top: rem(5px);
+                margin-bottom: rem(12px);
+
+                p {
+                    color: $gray7;
+                    line-height: 1.5;
+                }
+
+                .show-all-reviews {
+                    padding: 0;
+                    border: 0;
+                    margin: 0;
+                    background-color: $gray1;
+                    color: $gray6;
+                    font-family: AirbnbCereal_W_Md;
+                    font-size: rem(16px);
+                    text-decoration: underline;
+                    text-underline-offset: rem(1.2px);
+                    letter-spacing: rem(-0.2px);
+                    cursor: pointer;
+
+                }
+            }
+        }
+    }
+
+    >.show-all-reviews {
+        background-color: $gray1;
+        border: 1px solid $gray6;
+        border-radius: rem(8px);
+        padding: rem(14px) rem(20px);
+        cursor: pointer;
+        font-family: AirbnbCereal_W_Md;
+        font-size: rem(16px);
+        // margin-top: rem(12px);
+
+        &:hover {
+            background-color: $gray2;
+        }
+    }
+
+    .reviews-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($gray6, 0.5);
+        z-index: 1;
+    }
+
+    .reviews-modal {
+        background-color: $gray1;
+        padding: rem(12px) rem(24px);
+        border-radius: rem(12px);
+        max-width: 60%;
+        max-height: 80%;
+        overflow: hidden;
+        position: relative;
+
+        .close-btn {
+            position: absolute;
+            right: rem(12px);
+            top: rem(12px);
+            width: rem(32px);
+            height: rem(32px);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .stay-reviews {
+            border-top: 0;
+            margin-left: 5%;
+            margin-right: 5%;
+
+            .reviews-list {
+                overflow-y: scroll;
+                display: block;
+                height: rem(300px);
+                //TODO: i need to add here a calculation od the height!!!
+
+                .review {
+                    margin-right: rem(32px);
+
+                }
+            }
+        }
+    }
+}
