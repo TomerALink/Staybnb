@@ -5,21 +5,86 @@ import 'react-date-range/dist/theme/default.css'
 import { useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay.service'
-import {  SET_FILTER_BY  } from "../store/reducers/stay.reducer.js"
+import { SET_FILTER_BY } from '../store/reducers/stay.reducer.js'
 
 export function StayFilter({ filterBy, defaultFilter }) {
 
   const dispatch = useDispatch()
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef(null)
+  const checkOutRef = useRef(null)
+  const regionSearchHeader = useRef(null)
+  const regionSearchContent = useRef(null)
+  const checkInHeader = useRef(null)
+  const checkIncontent = useRef(null)
+  const divider2 = useRef(null)
+  const guestsButtonHeader = useRef(null)
+  const guestsButtoncontent = useRef(null)
+  const [scrolled, setScrolled] = useState(false);
+ 
+
+  
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
     dispatch({ type: SET_FILTER_BY, filterBy: { ...defaultFilter } })
-  }, [])
-  
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50); // Adjust 50 to the desired scroll position
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+  //   dispatch({ type: SET_FILTER_BY, filterBy: { ...defaultFilter } })
+  onScrolled()
+  console.log(scrolled)
+  }, [scrolled])
+
+  function onScrolled() {
+
+      if (checkOutRef.current) {
+        checkOutRef.current.style.display = !scrolled ? 'flex' :'none'  ;
+      }
+      
+      if (regionSearchHeader.current) {
+        regionSearchHeader.current.innerText = !scrolled ? 'Where' :'Anywhere'  ;
+      }
+
+      if (regionSearchContent.current) {
+        regionSearchContent.current.placeholder = !scrolled ? 'Search destinations' :''  ;
+      }
+      
+      if (checkInHeader.current) {
+        checkInHeader.current.innerText = !scrolled ? 'Check in' :'Any week'  ;
+      }
+
+      if (checkIncontent.current) {
+        checkIncontent.current.innerText = !scrolled ? 'Add dates' :''  ;
+      }
+
+      if (divider2.current) {
+        divider2.current.style.display = !scrolled ? 'block' :'none'  ;
+      }
+      
+      if (guestsButtonHeader.current) {
+        guestsButtonHeader.current.innerText = !scrolled ? 'Who' :'Add guests'  ;
+      }
+
+      if (guestsButtoncontent.current) {
+        guestsButtoncontent.current.innerText = !scrolled ? 'Add guests' :''  ;
+      }
+
+
+  }
+
   function onSetFilterBy(filterBy) {
     dispatch({ type: SET_FILTER_BY, filterBy })
-    setSearchParams( {...filterBy} )
+    setSearchParams({ ...filterBy })
   }
 
   const [selectedItem, setSelectedItem] = useState(null);
@@ -70,7 +135,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
     setDateRange([ranges.selection])
   }
 
-  
+
   function toggleGuestsDropdown() {
 
     closeAllDropdowns()
@@ -160,10 +225,10 @@ export function StayFilter({ filterBy, defaultFilter }) {
   }, [dropdownRef]);
   return (
 
-    <section  ref={dropdownRef} className="stay-filter">
+    <section ref={dropdownRef} className={scrolled ? 'stay-filter scrolled' : 'stay-filter'}> 
       <div className={`search-item region-search ${selectedItem == 'region-search' ? 'selected' : ''}`}>
-        <span>Where</span>
-        <input
+        <label ref={regionSearchHeader}>Where</label>
+        <input ref={regionSearchContent}
           type="text"
           name="txt"
           value={filterToEdit.txt}
@@ -193,16 +258,16 @@ export function StayFilter({ filterBy, defaultFilter }) {
       <div className="divider divider1"></div>
 
       <div className="date-picker-container" onClick={toggleDateRange}>
-        <div className={`date-picker-wrapper ${selectedItem == 'check-in' ? 'selected' : 'not-selected'}`}>
-          <label>Check in</label>
-          <span className="date-text">
+        <div className={`  date-picker-wrapper ${selectedItem == 'check-in' ? 'selected' : 'not-selected'}`}>
+          <label ref={checkInHeader} >Check in</label>
+          <span ref={checkIncontent} className="date-text">
             {filterToEdit.startDate
               ? new Date(filterToEdit.startDate).toLocaleDateString('en-GB')
               : 'Add dates'}
           </span>
         </div>
-        <div className="divider divider2"></div>
-        <div className={`date-picker-wrapper ${selectedItem == 'check-out' ? 'selected' : 'not-selected'}`}>
+        <div ref={divider2} className="divider divider2"></div>
+        <div ref={checkOutRef} className={` date-picker-wrapper ${selectedItem == 'check-out' ? 'selected' : 'not-selected'}`}>
           <label>Check out</label>
           <span className="date-text">
             {filterToEdit.endDate
@@ -236,8 +301,8 @@ export function StayFilter({ filterBy, defaultFilter }) {
       <div className={`search-container ${selectedItem == 'search-container' ? 'selected' : 'not-selected'}`}>
         <div className={`guests-selector ${selectedItem == 'search-container' ? 'selected' : 'not-selected'}`}>
           <button className="guests-button" onClick={toggleGuestsDropdown}>
-            <span>Who</span>
-            <span>
+            <label ref={guestsButtonHeader} >Who</label>
+            <span ref={guestsButtoncontent}>
               {guests.adults + guests.children + guests.infants + guests.pets >
                 0 ? (
                 <>
@@ -304,6 +369,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
           >
             <path d="M13 0c7.18 0 13 5.82 13 13 0 2.868-.929 5.519-2.502 7.669l7.916 7.917-2.828 2.828-7.917-7.916A12.942 12.942 0 0 1 13 26C5.82 26 0 20.18 0 13S5.82 0 13 0zm0 4a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"></path>
           </svg>
+          <span className='hidden'>Search</span>
         </button>
       </div>
     </section>
