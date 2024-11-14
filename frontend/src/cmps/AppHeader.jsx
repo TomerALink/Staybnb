@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TagFilter } from "../cmps/TagFilterCarousel"
 import { StayFilter } from './StayFilter.jsx'
 import { stayService } from '../services/stay.service.js'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { SET_FILTER_BY } from "../store/reducers/stay.reducer.js"
 import { Logo } from "../cmps/Logo.jsx"
 
@@ -31,19 +31,20 @@ export function AppHeader() {
 
 				<header className="app-header full">
 					<section className="top-header">
-						<Logo />
+						<Link to="/"><Logo /></Link>
+
 
 
 						{(!location.pathname.startsWith('/stay/details') || isScrolled) && (
 							<section className='stay-experience-btns'>
-								<button className="btn-active">Stays</button>
+								<Link className="btn-active" to="/">Stays</Link>
 								<button className="btn">Experiences</button>
 							</section>
 						)}
 
 
 						<div>
-							<button className="btn btn-active airbnb-your-home">Airbnb your home</button>
+							<Link className="btn btn-active airbnb-your-home" to="/stay/add">Airbnb your home</Link>
 							<button className="btn btn-active"><img className='i18' src="/src/assets/img/i18.svg" alt="" /></button>
 							<button className="btn btn-shadow"><img className='burger' src="/src/assets/img/burger.svg" alt="" /><img className='avatar' src="/src/assets/img/avatar.svg" alt="" /></button>
 						</div>
