@@ -2,8 +2,8 @@
 
   .slider {
     width: 100%;
-    aspect-ratio: 20/19;
-    margin: 0 auto;
+    aspect-ratio: 20/19.24;
+    margin-bottom: 3px;
   }
 
   .imgs {
@@ -18,7 +18,8 @@
   }
 
   .stay-preview-star-icon {
-    max-width: rem(14px);
+    max-width: rem(13px);
+    padding-bottom: 4px;
   }
 
   .stay-preview-info {
@@ -28,7 +29,7 @@
     padding: 10px 0 0;
     margin: 0;
     font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-    line-height: 1.43;
+    line-height: 1.35;
     
     
 
@@ -52,7 +53,7 @@
     }
 
     .stay-preview-price {
-      line-height: 1.5;
+      line-height: 2;
     }
 
     .stay-preview-rating {

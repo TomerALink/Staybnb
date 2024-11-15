@@ -46,7 +46,7 @@ export function StayPreview({ stay }) {
 
         <article className="stay-preview">
             <div className='slider'>
-                <ImgSlider imgUrls={stay.imgUrls} isOnWishList ={true} addToWishList={addToWishList} /> 
+                <ImgSlider imgUrls={stay.imgUrls} isOnWishList ={isOnWishList} addToWishList={addToWishList} /> 
                 {/* TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! isOnWishList */}
             </div>
             <section className="stay-preview-info">

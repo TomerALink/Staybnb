@@ -5,15 +5,13 @@
     background-color: $gray1;
 
 .top-header-container {
-    // display: grid;
-    // grid-template-columns: 6em auto 6em;
+
     border-bottom: 1px solid $gray3;
 
     .app-header {
 
         grid-column: 2;
 
-        // margin: 0 6em 0;
         .top-header {
             display: flex;
             flex-direction: row;
@@ -26,6 +24,7 @@
 
             .i18 {
                 height: 1em;
+                margin: rem(13px);
             }
 
             .burger {
@@ -43,13 +42,15 @@
             .airbnb-your-home {
                 font-size: em(15px);
                 letter-spacing: -1px;
+                margin-right: -.75em;
+                
             }
         }
 
         .serch-filter-container {
             display: grid;
             justify-content: center;
-            margin-bottom: 1.5em;
+            margin-bottom: rem(23px);
 
         }
     }
