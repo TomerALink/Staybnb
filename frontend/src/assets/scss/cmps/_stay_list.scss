@@ -1,6 +1,6 @@
 .list-container {
     // padding: 0px 80px;
-    margin: 16px 0 72px;
+    margin: 10px 0 72px;
 
     .list {
 
@@ -10,8 +10,8 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax($min-column-size, 1fr));
 
-        column-gap: 1.45em;
-        row-gap: 2.1em;
+        column-gap: rem(30px);
+        row-gap: 2rem;
 
 
         padding: 0;

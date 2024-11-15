@@ -4,8 +4,8 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { stayService } from '../services/stay.service'
 import { SET_FILTER_BY } from '../store/reducers/stay.reducer.js'
+
 
 export function StayFilter({ filterBy, defaultFilter }) {
 
@@ -19,66 +19,47 @@ export function StayFilter({ filterBy, defaultFilter }) {
   const divider2 = useRef(null)
   const guestsButtonHeader = useRef(null)
   const guestsButtoncontent = useRef(null)
-  const [scrolled, setScrolled] = useState(false);
- 
-
-  
+  const [scrolled, setScrolled] = useState()
+  const [resetMenu, setResetMenu] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
     dispatch({ type: SET_FILTER_BY, filterBy: { ...defaultFilter } })
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50); // Adjust 50 to the desired scroll position
-    };
+      console.log("resetMenu", resetMenu)
+      if (resetMenu) return
+      if (window.scrollY != 0 || scrolled) {
+        setSmallFilter()
+        closeAllDropdowns()
+      } else {
+        setBigFilter()
+      }
 
-    window.addEventListener('scroll', handleScroll);
+      setScrolled(window.scrollY != 0)
+      if (window.scrollY == 0) setBigFilter()
+    }
+
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [resetMenu])
 
-  useEffect(() => {
-  //   dispatch({ type: SET_FILTER_BY, filterBy: { ...defaultFilter } })
-  onScrolled()
-  console.log(scrolled)
-  }, [scrolled])
 
-  function onScrolled() {
 
-      if (checkOutRef.current) {
-        checkOutRef.current.style.display = !scrolled ? 'flex' :'none'  ;
-      }
-      
-      if (regionSearchHeader.current) {
-        regionSearchHeader.current.innerText = !scrolled ? 'Where' :'Anywhere'  ;
-      }
-
-      if (regionSearchContent.current) {
-        regionSearchContent.current.placeholder = !scrolled ? 'Search destinations' :''  ;
-      }
-      
-      if (checkInHeader.current) {
-        checkInHeader.current.innerText = !scrolled ? 'Check in' :'Any week'  ;
-      }
-
-      if (checkIncontent.current) {
-        checkIncontent.current.innerText = !scrolled ? 'Add dates' :''  ;
-      }
-
-      if (divider2.current) {
-        divider2.current.style.display = !scrolled ? 'block' :'none'  ;
-      }
-      
-      if (guestsButtonHeader.current) {
-        guestsButtonHeader.current.innerText = !scrolled ? 'Who' :'Add guests'  ;
-      }
-
-      if (guestsButtoncontent.current) {
-        guestsButtoncontent.current.innerText = !scrolled ? 'Add guests' :''  ;
-      }
-
+  function setSmallFilter() {
+    console.log("setSmallFilter")
+    document.querySelector('.stay-filter').classList.add('scrolled')
+    checkOutRef.current.style.display = 'none'
+    regionSearchHeader.current.innerText = 'Anywhere'
+    regionSearchContent.current.placeholder = ''
+    checkInHeader.current.innerText = 'Any week'
+    checkIncontent.current.innerText = ''
+    divider2.current.style.display = 'none'
+    guestsButtonHeader.current.innerText = 'Add guests'
+    guestsButtoncontent.current.innerText = ''
 
   }
 
@@ -87,7 +68,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
     setSearchParams({ ...filterBy })
   }
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null)
   const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
   const [guests, setGuests] = useState({
     adults: 0,
@@ -138,6 +119,9 @@ export function StayFilter({ filterBy, defaultFilter }) {
 
   function toggleGuestsDropdown() {
 
+    setResetMenu(true)
+    setTimeout(() => { setResetMenu(false) }, 1000)
+    setBigFilter()
     closeAllDropdowns()
     setIsGuestsDropdownOpen(!isGuestsDropdownOpen)
   }
@@ -150,12 +134,30 @@ export function StayFilter({ filterBy, defaultFilter }) {
 
   function handleSearch() {
     onSetFilterBy(filterToEdit)
-    closeAllDropdowns();
+    closeAllDropdowns()
+  }
+
+  function setBigFilter() {
+    console.log("setBigFilter")
+    document.querySelectorAll('.scrolled').forEach((elm) => {
+      elm.classList.remove('scrolled')
+    })
+
+    checkOutRef.current.style.display = 'flex'
+    regionSearchHeader.current.innerText = 'Where'
+    regionSearchContent.current.placeholder = 'Search destinations'
+    checkInHeader.current.innerText = 'Check in'
+    checkIncontent.current.innerText = 'Add dates'
+    divider2.current.style.display = 'block'
+    guestsButtonHeader.current.innerText = 'Who'
+    guestsButtoncontent.current.innerText = 'Add guests'
   }
 
   function toggleRegionDropdown() {
+    setResetMenu(true)
+    setTimeout(() => { setResetMenu(false) }, 1000)
+    setBigFilter()
     closeAllDropdowns()
-
     setIsRegionDropdownOpen(!isRegionDropdownOpen)
     setSelectedItem(isRegionDropdownOpen ? '' : 'region-search')
   }
@@ -168,17 +170,19 @@ export function StayFilter({ filterBy, defaultFilter }) {
   }
 
   function toggleDateRange() {
+    setResetMenu(true)
+    setTimeout(() => { setResetMenu(false) }, 1000)
+    setBigFilter()
     setSelectedItem(isRegionDropdownOpen ? 'check-in' : '')
     closeAllDropdowns()
-
     setIsDateRangeVisible(!isDateRangeVisible)
-
   }
 
   function closeAllDropdowns() {
     setIsGuestsDropdownOpen(false)
     setIsRegionDropdownOpen(false)
     setIsDateRangeVisible(false)
+    document.querySelectorAll('.selected').forEach(item => item.classList.remove('selected'))
   }
 
   const regions = [
@@ -212,21 +216,23 @@ export function StayFilter({ filterBy, defaultFilter }) {
     // Handler to call when clicking outside
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        closeAllDropdowns();
+        closeAllDropdowns()
       }
     }
 
     // Bind the event listener
-    window.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("mousedown", handleClickOutside)
     return () => {
       // Unbind the event listener on cleanup
-      window.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dropdownRef]);
+      window.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [dropdownRef])
+
+
   return (
 
-    <section ref={dropdownRef} className={scrolled ? 'stay-filter scrolled' : 'stay-filter'}> 
-      <div className={`search-item region-search ${selectedItem == 'region-search' ? 'selected' : ''}`}>
+    <section ref={dropdownRef} className={scrolled ? 'stay-filter scrolled' : 'stay-filter'}>
+      <div onClick={toggleRegionDropdown} className={`search-item region-search ${selectedItem == 'region-search' ? 'selected' : ''}`}>
         <label ref={regionSearchHeader}>Where</label>
         <input ref={regionSearchContent}
           type="text"
@@ -279,6 +285,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
 
       {isDateRangeVisible && (
         <section className="date-filter">
+
           <DateRangePicker
             ranges={dateRange}
             onChange={handleDateSelect}
@@ -292,8 +299,9 @@ export function StayFilter({ filterBy, defaultFilter }) {
             inputRanges={[]}
             enableOutsideDays={true}
             minDate={new Date()}
-            rangeColors={['#c72d65']}
+            rangeColors={['#FF0532']}
           />
+
         </section>
       )}
 
@@ -373,7 +381,5 @@ export function StayFilter({ filterBy, defaultFilter }) {
         </button>
       </div>
     </section>
-
-
   )
 }

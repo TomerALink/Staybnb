@@ -40,7 +40,7 @@
       color: lighten($gray7, 17%);
     }
     @if $type =="shadow" {
-      margin: 1em 0 1em ;
+      margin: 1em -.5em 1em ;
       border: 1px solid $gray3;
       background-color: $bg;
       font-weight: 600;

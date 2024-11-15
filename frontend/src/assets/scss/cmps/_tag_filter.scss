@@ -6,8 +6,8 @@
     grid-template-columns: auto 1fr auto;
     position: relative;
     overflow: hidden;
- 
-    
+
+
 
 
     .scroll-btn {
@@ -23,13 +23,13 @@
         border: 1px solid $gray3;
         box-shadow: none;
 
-        img{
+        img {
             width: em(15px);
             height: em(15px);
         }
     }
 
-  
+
 
 
     .scroll-btn.right {
@@ -39,22 +39,22 @@
     .tag {
 
         height: 66px;
-        margin: 1.5rem 6rem;
+        margin: rem(28px) 0 0;
 
         display: flex;
         white-space: nowrap;
         align-items: center;
-        // padding-bottom: rem(5px);
-        padding-bottom:rem(5px); // rem(5px) rem(5px);
+      
+        padding-bottom: rem(5px); 
         scroll-behavior: smooth;
         flex-grow: 1;
         overflow: hidden;
         white-space: nowrap;
-        gap: 55px;
+        gap: 60px;
     }
-    
+
     .tag-card {
-        // padding: 0 40px;
+ 
         height: 65px;
         width: 100px;
         text-align: center;
@@ -62,21 +62,35 @@
         display: grid;
         justify-content: center;
 
-        &:hover{
-            border-bottom: 2px solid $gray4;
+        &:hover {
+            color: $gray7;
+            border-bottom: 2px solid $gray3;
+
+            .tag-icon {
+                opacity: 1;
+            }
         }
-        
+
     }
 
     .selected {
-        border-bottom: solid 2px #000
+        border-bottom: solid 2px $gray7;
+        color: $gray7;
+        .tag-icon {
+            opacity: 1;
+        }
     }
+
     .tag-icon {
 
         height: 25px;
         width: 25px;
         stroke: $gray5;
-        
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
 
     }
 }
