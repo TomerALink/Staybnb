@@ -11,6 +11,11 @@
   max-width: rem(850px);
   transition: all 0.5s ease-in-out;
 
+  .serch-filter-container {
+    height: rem(48px);
+    margin-bottom: rem(48px);
+  }
+
   .date-text {
     color: $gray5;
     font-size: em(14px);
@@ -34,7 +39,8 @@
   .selected {
     background-color: $gray1;
     border-radius: rem(32px);
-    box-shadow: 0 3px 12px 0 rgb(0 0 0/0.15);;
+    box-shadow: 0 3px 12px 0 rgb(0 0 0/0.15);
+    ;
   }
 
   .not-selected {
@@ -318,7 +324,7 @@
     border-radius: 2em;
     width: fit-content;
     padding: 1.25em;
- 
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -433,18 +439,21 @@
 
 .rdrMonthName {
   color: $gray7;
-  font-size:rem(16px);
+  font-size: rem(16px);
   text-align: center;
 
 }
+
 .rdrDayNumber {
   border-radius: 50%;
 }
+
 .rdrStartEdge {
   border-radius: 50%;
   left: 6px;
   width: 3.5em;
 }
+
 .rdrDateRangePickerWrapper {
   & span {
     color: $gray7;
@@ -468,31 +477,92 @@
   color: rebeccapurple;
 }
 
+.guests-selector .guests-button {
+  font-size: 14px;
+}
+
 .stay-filter.scrolled {
+  .guests-selector {
+    .guests-button {
+      label {
+        font-size: 14px;
+        font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        color: $gray5;
+        font-weight: 500;
+        padding-left: 17px;
+      }
+    }
+  }
+
+  .search-container {
+    width: 147px;
+  }
+
+  .date-picker-container {
+
+    .date-picker-wrapper {
+      padding: 0.625rem 0;
+      width: 93px;
+
+      label {
+        font-size: 14px;
+        font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        color: $gray5;
+      }
+    }
+  }
+
+  .search-item {
+    width: 109px;
+    padding-right: 0;
+
+    .region-search {
+      width: 99px;
+    }
+    label {
+      width: 99px;
+      color: $gray5;
+      padding: 0.625rem 0 0.625rem 1.5rem;
+    }
+
+  }
+
+  label {
+    font-size: 14px;
+  }
+
   transform: scale(0.47, 0.72) translateY(-50px);
 
   width: rem(400px);
   height: rem(48px);
-  transform:  translateY(-50px);
+  transform: translateY(-50px);
   transition: all .5s ease-in;
 
-  span,input{
+  span,
+  input {
     display: none;
   }
-  .search-button{
+
+  .search-button {
     width: rem(32px);
     height: rem(32px);
-    svg{
+
+    svg {
       width: rem(12px) !important;
       height: rem(12px);
     }
   }
-  .date-picker-wrapper{
+
+  .date-picker-wrapper {
     text-align: center;
   }
 
-  .search-button{
+  .search-button {
     padding: unset;
   }
 
+  section.serch-filter-container {
+    height: 0;
+    margin: 0;
+  }
 }
