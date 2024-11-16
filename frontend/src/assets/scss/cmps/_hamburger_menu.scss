@@ -1,0 +1,25 @@
+
+.hamburger-menu {
+    font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 15px;
+    top: 72px;
+    right: 85px;
+    background-color: $gray1;
+    color: $gray5;
+    border-radius: rem(12px);
+    position: absolute;
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+    z-index: 999;
+
+    hr{
+        border-top: 1px solid $gray2-5;
+    }
+    
+    div{
+        width: 240px;
+        padding-top: 20px;
+        padding-bottom: 5px;
+        padding-left: 1em;
+    }
+
+}

@@ -9,6 +9,7 @@ import { StayDetails } from './pages/StayDetails'
 import { AddStay } from './pages/AddStay.jsx'
 
 
+
 export function App() {
   return (
     <>
@@ -17,6 +18,7 @@ export function App() {
       <Router>
         <section className="main-layout app">
           <AppHeader />
+          
           <main>
             <Routes>
               <Route element={<HomePage />} path="/" />
