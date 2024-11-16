@@ -52,6 +52,9 @@ export function StayFilter({ filterBy, defaultFilter }) {
   function setSmallFilter() {
     console.log("setSmallFilter")
     document.querySelector('.stay-filter').classList.add('scrolled')
+    document.querySelector('.serch-filter-container').classList.add('scrolled')
+    document.querySelector('.tag').classList.add('scrolled')
+    
     checkOutRef.current.style.display = 'none'
     regionSearchHeader.current.innerText = 'Anywhere'
     regionSearchContent.current.placeholder = ''
