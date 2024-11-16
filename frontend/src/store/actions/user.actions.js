@@ -16,6 +16,19 @@ export function login(credentials) {
         })
 }
 
+export function loginWithGoogle(credentials) {
+    console.log('credentials:', credentials)
+    return userService.loginWithGoogle(credentials)
+        .then((user) => {
+            console.log('user login:', user)
+            store.dispatch({ type: SET_USER, user })
+        })
+        .catch((err) => {
+            console.log('user actions -> Cannot login', err)
+            throw err
+        })
+}
+
 export function signup(credentials) {
     return userService.signup(credentials)
         .then((user) => {
@@ -27,8 +40,8 @@ export function signup(credentials) {
         })
 }
 
-export function logout(credentials) {
-    return userService.logout(credentials)
+export function logout() {
+    return userService.logout()
         .then(() => {
             store.dispatch({ type: SET_USER, user: null })
         })
