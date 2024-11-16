@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 
-export function StayList() {
+export function StayList({currentPos}) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
@@ -32,10 +32,11 @@ export function StayList() {
 
     return <section>
         <div className='list-container'>
+        {console.log(currentPos)}
             <ul className="list">
                 {stays.map(stay =>
                     <li onClick={()=>onNavigatToDetiles(stay._id)} key={stay._id}>
-                        <StayPreview  stay={stay} />
+                        <StayPreview currentPos={currentPos}  stay={stay} />
                     </li>)
                 }
             </ul>
