@@ -7,6 +7,7 @@ import './assets/scss/main.scss'
 import { HomePage } from './pages/HomePage'
 import { StayDetails } from './pages/StayDetails'
 import { AddStay } from './pages/AddStay.jsx'
+import { GoogleAuthenticator } from './cmps/GoogleAuthenticator.jsx'
 
 
 
@@ -16,14 +17,15 @@ export function App() {
      <Provider store={store}>
 
       <Router>
-        <section className="main-layout app">
+        <section className='main-layout app'>
           <AppHeader />
           
           <main>
             <Routes>
-              <Route element={<HomePage />} path="/" />
-              <Route path="/stay/details/:stayId" element={<StayDetails />} />
-              <Route path="/stay/add" element={<AddStay/>} />
+              <Route element={<HomePage />} path='/' />
+              <Route element={<GoogleAuthenticator />} path='/authenticator' />
+              <Route path='/stay/details/:stayId' element={<StayDetails />} />
+              <Route path='/stay/add' element={<AddStay/>} />
             </Routes>
           </main>
           <AppFooter />

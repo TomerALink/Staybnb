@@ -5,6 +5,7 @@ const BASE_URL = 'auth/'
 
 export const userService = {
     login,
+    loginWithGoogle,
     signup,
     logout,
     getLoggedinUser,
@@ -23,9 +24,6 @@ async function login({ username, password }) {
         console.log('problem login: '+error)
         Logger.error('problem login: '+error)
     }
-
-
-
 }
 
 async function signup({ username, password, fullname }) {
@@ -43,7 +41,8 @@ async function signup({ username, password, fullname }) {
 
 function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    return httpService.post(BASE_URL+'logout')
+    return Promise.resolve(true)
+    // return httpService.post(BASE_URL+'logout') //TODO add when backend is added
 }
 
 function getLoggedinUser() {
@@ -62,8 +61,26 @@ function getEmptyCredentials() {
     }
 }
 
+async function loginWithGoogle({ sub, email, name, picture}) {
+    try {
+        const user = {
+            _id: sub,
+            fullname: name.split('@')[0],
+            isAdmin: true,
+            picture: picture
+        }
+        _setLoggedinUser(user)
+        return user
+        
+    } catch (error) {
+        console.log('problem login: '+error)
+        Logger.error('problem login: '+error)
+    }
+}
+
+
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin }
+    const userToSave = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin, picture: user.picture || null }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
     return userToSave
 }
