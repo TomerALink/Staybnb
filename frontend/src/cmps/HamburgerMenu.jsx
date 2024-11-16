@@ -10,7 +10,6 @@ export function HamburgerMenu({setShowMenu, menuBtn}) {
 	useEffect(() => {
 		// Handler to call when clicking outside
 		function handleClickOutside(event) {
-            console.log(event.target)
 		  if (menuRef.current && !menuBtn.current.contains(event.target) && !menuRef.current.contains(event.target)) {
 			setShowMenu(false)
 		  }

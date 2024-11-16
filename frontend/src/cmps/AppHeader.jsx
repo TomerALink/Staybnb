@@ -33,7 +33,6 @@ export function AppHeader() {
 	function onToggleMenu() {
 		setShowMenu((prevShowMenu) => {
 			const newShowMenu = !prevShowMenu
-			console.log(newShowMenu) // Logs the correct updated value
 			return newShowMenu
 		})
     }
