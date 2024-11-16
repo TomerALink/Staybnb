@@ -37,7 +37,7 @@ export function GoogleAuthenticator() {
 
   return (
     <div className='App'>
-      <h1>Google Login Demo</h1>
+      <h1>Google Login</h1>
       {!user ? (
         <div id='google-signin'></div>
       ) : (
@@ -50,5 +50,5 @@ export function GoogleAuthenticator() {
         </div>
       )}
     </div>
-  );
+  )
 }

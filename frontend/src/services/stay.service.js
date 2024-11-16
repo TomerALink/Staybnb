@@ -1,7 +1,9 @@
 
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-// import { userService } from './user.service.js'
+import { userService } from './user.service.js'
+import stayJson from '../../data/stay.json'
+
 
 const STORAGE_KEY = 'stayDB'
 
@@ -13,7 +15,9 @@ export const stayService = {
   getEmptyStay,
   // getRandomStay,
   getDefaultFilter,
-  getFilterFromSearchParams
+  getFilterFromSearchParams,
+  getCurrentPos,
+  calculateDistance
 }
 
 function getFilterFromSearchParams(searchParams) {
@@ -37,7 +41,7 @@ function getFilterFromSearchParams(searchParams) {
 async function query(filterBy = getDefaultFilter()) {
   var stays = await storageService.query(STORAGE_KEY)
   const { startDate, endDate, minPrice, maxPrice, guests = {},  country , tag} = filterBy
-  // console.log(JSON.stringify(filterBy))
+
 
   
   if (country) {
@@ -66,13 +70,13 @@ function remove(stayId) {
 
 
 function save(stay) {
-  if (stay._id) {
-    return storageService.put(STORAGE_KEY, stay)
-  } else {
+  // if (stay._id) { //TODO add dfter adding backend
+  //   return storageService.put(STORAGE_KEY, stay)
+  // } else {
     // when switching to backend - remove the next line
     stay.host = userService.getLoggedinUser()
     return storageService.post(STORAGE_KEY, stay)
-  }
+  // }
 }
 
 function getEmptyStay() {
@@ -746,12 +750,27 @@ async function _createStays() {
   const stays = await storageService.query(STORAGE_KEY)
   if (stays.length < 1) {
 
-    for (let index = 0; index < tempStays.length; index++) {
-      await save(tempStays[index])
+    
+    for (let index = 0; index < stayJson.length; index++) {
+
+
+      await save(stayJson[index])
     }
   }
 
 }
+
+
+// async function _createStays() {
+//   const stays = await storageService.query(STORAGE_KEY)
+//   if (stays.length < 1) {
+
+//     for (let index = 0; index < tempStays.length; index++) {
+//       await save(tempStays[index])
+//     }
+//   }
+
+// }
 
 function getDefaultFilter() {
   return { txt: '',
@@ -767,3 +786,35 @@ function getDefaultFilter() {
 
 
 _createStays()
+function getCurrentPos() {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error)
+      );
+    } else {
+      reject(new Error("Geolocation is not supported by this browser."));
+    }
+  })
+}
+
+
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371 // Radius of the Earth in kilometers
+
+  // Convert degrees to radians
+  const toRadians = (degrees) => (degrees * Math.PI) / 180
+
+  const dLat = toRadians(lat2 - lat1)
+  const dLon = toRadians(lon2 - lon1)
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLon / 2) ** 2
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+  return (R * c).toFixed(2) // Distance in kilometers
+}

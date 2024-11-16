@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import ImgSlider from './ImgSlider';
-import { utilService } from '../services/util.service';
+import ImgSlider from './ImgSlider'
+import { utilService } from '../services/util.service'
+import { stayService } from '../services/stay.service'
 
-export function StayPreview({ stay }) {
+export function StayPreview({currentPos, stay }) {
 
     // const [stayRating, setStayRating] = useState(0)
 
@@ -26,7 +27,7 @@ export function StayPreview({ stay }) {
         if (!reviews || reviews.length === 0) {
             return 0
         }
-        const totalRate = reviews.reduce((sum, review) => sum + review.rate, 0);
+        const totalRate = reviews.reduce((sum, review) => sum + review.rate, 0)
         const averageRate = totalRate / reviews.length; 
         return averageRate;
     }
@@ -65,11 +66,13 @@ export function StayPreview({ stay }) {
                     </div>
                 </div>
                 <div className="stay-preview-distance">
-                    {stay.summary}
-                    {/* {stay.kilometersAway} kilometers away */}
+                
+                    {/* {stay.summary} */}
+                    {console.log(currentPos)}
+                    {stayService.calculateDistance(currentPos.latitude , currentPos.longitude, stay.loc.lat, stay.loc.lan)} kilometers away
                 </div>
                 {/* <div className="stay-preview-date-range">{stay.dateRange}</div> */}
-                <div className="stay-preview-date-range">Nov 9-14</div>
+                <div className="stay-preview-date-range">Nov 17-{utilService.getRandomIntInclusive(20,30)}</div>
                 <div className="stay-preview-price">
                     <span>${stay.price.toLocaleString()}</span> night
                 </div>
