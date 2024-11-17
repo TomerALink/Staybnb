@@ -40,9 +40,14 @@ function getFilterFromSearchParams(searchParams) {
 
 async function query(filterBy = getDefaultFilter()) {
   var stays = await storageService.query(STORAGE_KEY)
-  const { startDate, endDate, minPrice, maxPrice, guests = {},  country , tag} = filterBy
+  const { txt, startDate, endDate, minPrice, maxPrice, guests = {},  country , tag} = filterBy
 
-
+  if (txt) {
+    const regex = new RegExp(txt, 'i');
+    stays = stays.filter(
+      (stay) => regex.test(stay.loc.city) || regex.test(stay.loc.country) 
+    )
+  }
   
   if (country) {
     stays = stays.filter((stay) => stay.loc.country === country)
