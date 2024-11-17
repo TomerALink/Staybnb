@@ -1,0 +1,290 @@
+.reservation {
+    min-width: rem(215px);
+    color: $gray7;
+    margin-top: 2rem;
+    position: relative;
+    display: block;
+    z-index: 1;
+    position: sticky;
+    top: 6.25rem;
+    margin-block-end: rem(16px);
+    padding: rem(24px);
+    border: 1px solid $gray2;
+    border-radius: rem(12px);
+    box-shadow: #0000001f 0 6px 16px;
+    padding-top: rem(12px);
+    // margin-right: rem(6px);
+  
+    .reservation-price {
+      display: flex;
+      align-items: center;
+      font-size: larger;
+  
+      h3 {
+        margin-top: rem(12px);
+        font-weight: 600;
+      }
+  
+      span {
+        margin-bottom: rem(8px);
+        font-size: rem(16px);
+      }
+  
+    }
+  
+    .reservation-selectors {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $gray4;
+      border-radius: rem(8px);
+  
+    }
+  
+    .date-picker-container {
+      display: flex;
+      justify-content: space-between;
+  
+      .check-in,
+      .check-out {
+        cursor: pointer;
+        position: relative;
+  
+        &:first-child::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          width: 1px;
+          background-color: $gray2;
+        }
+  
+        &:focus-within {
+          outline: 2px solid $gray7;
+          border-radius: rem(4px);
+        }
+  
+        &.focused {
+          outline: 2px solid $gray7;
+          border-radius: rem(4px);
+        }
+  
+        input {
+          cursor: pointer;
+          width: 100%;
+          padding-left: rem(8px);
+          padding-bottom: rem(8px);
+          border: none;
+          font-size: rem(14px);
+  
+          &:focus {
+            outline: none;
+          }
+        }
+  
+        label {
+          display: block;
+          font-weight: bold;
+          padding-left: rem(8px);
+          padding-top: rem(10px);
+          font-size: rem(10px);
+          color: $gray7;
+        }
+  
+        .react-datepicker-wrapper {
+  
+          .react-datepicker__input-container {
+            input {
+              width: 100%;
+              padding-left: rem(8px);
+              padding-bottom: rem(8px);
+              border: none;
+              font-size: rem(14px);
+            }
+          }
+        }
+      }
+    }
+  
+    .guests-selector {
+      position: relative;
+  
+      .guests-button {
+        width: 100%;
+        padding: rem(8px);
+        border: none;
+        border-top: 1px solid $gray2;
+        border-bottom-left-radius: rem(4px);
+        border-bottom-right-radius: rem(4px);
+        height: 3.5rem;
+        background: none;
+        font-size: rem(14px);
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: outline 0.2s ease-in-out;
+        outline: 1px solid transparent;
+  
+        &:focus,
+        &:active,
+        &.active {
+          outline: rem(2px) solid $gray7;
+          outline-offset: -1px;
+        }
+      }
+  
+  
+      .guests-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+  
+        label {
+          font-size: 12px;
+          font-weight: 600;
+          // letter-spacing: 0.00001rem;
+        }
+  
+        span {
+          font-size: 14px;
+        }
+      }
+  
+      .guests-dropdown {
+        position: absolute;
+        right: 0;
+        background-color: white;
+        border-radius: rem(8px);
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+        padding: rem(16px) rem(32px);
+        min-width: rem(280px);
+        display: none;
+        z-index: 10;
+  
+        &.active {
+          display: block;
+        }
+  
+        >div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: rem(12px) 0;
+          border-bottom: 1px solid $gray2;
+  
+          &:last-child {
+            border-bottom: none;
+          }
+  
+          .guest-type {
+            label {
+              font-size: rem(16px);
+              font-weight: 600;
+              color: $gray7;
+              margin-bottom: rem(4px);
+              display: block;
+            }
+  
+            span {
+              font-size: rem(14px);
+              color: $gray5;
+            }
+          }
+  
+          .guest-counter {
+            display: flex;
+            align-items: center;
+  
+            button {
+              width: rem(32px);
+              height: rem(32px);
+              border-radius: 50%;
+              border: 1px solid $gray2;
+              background: none;
+              font-size: rem(16px);
+              color: $gray7;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: border-color 0.2s ease, color 0.2s ease;
+  
+              &:hover:not(:disabled) {
+                border-color: $gray7;
+              }
+  
+              &:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+              }
+            }
+  
+            span {
+              margin: 0 rem(16px);
+              font-size: rem(16px);
+              color: $gray7;
+              min-width: rem(20px);
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  
+    .reserve-btn {
+      width: 100%;
+      padding: rem(14px);
+      color: $gray1;
+      border: none;
+      border-radius: rem(8px);
+      font-size: rem(16px);
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font: inherit;
+      height: rem(48px);
+      background: radial-gradient(103.95% 1413.54% at -3.95% 100%,
+          #d33753 0%,
+          #d13660 52.83%,
+          #c72d65 100%);
+      line-height: 19px;
+      margin-block-start: 1rem;
+      margin-block-end: 0.5rem;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: $branding;
+      }
+    }
+  
+    .charged-p {
+      text-align: center;
+      font-size: rem(14px);
+      color: $gray5;
+  
+    }
+  }
+  
+  .price-details {
+  
+    .calc-span,
+    .taxes-span {
+      text-decoration: underline;
+    }
+  
+    .price-item,
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: rem(10px);
+    }
+  
+    .price-total {
+      font-weight: bold;
+      font-size: rem(18px);
+      border-top: 1px solid $gray3;
+      padding-top: rem(24px);
+    }
+  }

@@ -13,6 +13,7 @@ import { StayDetailsAmenities } from '../cmps/stay_details_cmps/StayDetailsAmeni
 // import { StayDetailsReservation } from '../cmps/stay_details_cmps/StayDetailsReservation.jsx'
 import { StayDetailsReviews } from '../cmps/stay_details_cmps/StayDetailsReviews.jsx'
 import { useSelector } from 'react-redux'
+import { StayReservation } from '../cmps/stay_details_cmps/StayReservation.jsx'
 // import { StayDetailsMap } from '../cmps/stay_details_cmps/StayDetailsMap.jsx'
 
 
@@ -23,38 +24,53 @@ export function StayDetails() {
     const isLoading = useSelector(storeState => storeState.stayModule.isLoading)
 
     useEffect(() => {
-        onloadStay(stayId)        
+        onloadStay(stayId)
     }, [stayId])
-    
+
     const avgRating = utilService.calcAvgRating()
 
     async function onloadStay(stayId) {
         return await loadStay(stayId)
     }
-   
+
     return (
         <>
-        {isLoading && 'Loading...'}
-    
+            {isLoading && 'Loading...'}
+
             {stay &&
-            (
-                <section className="stay-details">
-                    <StayDetailsShareSave name={stay.name} />
-                    <StayDetailsGallery imgs={stay.imgUrls} />
-                    {/* <StayDetailsHeader stay={stay} /> */}
-                    <section className="stay-main-info">
-                        <StayDetailsConciseInfo type={stay.type} loc={stay.loc} capacity={stay.capacity} bedrooms={stay.bedrooms} bathrooms={stay.bathrooms} avgRating={avgRating} numReviews={stay.reviews.length} />
-                        <StayDetailsHostInfo host={stay.host} avgRating={avgRating} numReviews={stay.reviews.length} />
-                        {/* <StayDetailsHostSummary stay={stay} /> */}
-                        <StayDetailsAmenities amenities={stay.amenities} />
-                        
-                        {/* <StayDetailsReservation stay={stay} /> */}
-                    </section>
-                    <section className="stay-additional-info">
-                        <StayDetailsReviews reviews={stay.reviews} />
-                        {/* <StayDetailsMap stay={stay} /> */}
-                    </section>
-                </section>)
+                (
+                    <section className="stay-details">
+                                <StayDetailsShareSave name={stay.name} />
+                                <StayDetailsGallery imgs={stay.imgUrls} />
+                        <div className='middle-layout'>
+                            <div className='left-side-container' >
+                                {/* <StayDetailsHeader stay={stay} /> */}
+                                <section className="stay-main-info">
+                                    <StayDetailsConciseInfo type={stay.type} loc={stay.loc} capacity={stay.capacity} bedrooms={stay.bedrooms} bathrooms={stay.bathrooms} avgRating={avgRating} numReviews={stay.reviews.length} />
+                                    {/* <StayDetailsHostInfo host={stay.host} avgRating={avgRating} numReviews={stay.reviews.length} /> */}
+                                    {/* <StayDetailsHostSummary stay={stay} /> */}
+                                    <StayDetailsAmenities amenities={stay.amenities} />
+
+                                    {/* <StayDetailsReservation stay={stay} /> */}
+                                </section>
+                            </div>
+                            <div className="stay-reservation">
+                                <StayReservation
+                                    stay={stay}
+                                    guestCount={5}
+                                    initialStartDate={null}
+                                    initialEndDate={null}
+                                // guestCount={guestCount}
+                                // initialStartDate={initialStartDate}
+                                // initialEndDate={initialEndDate}
+                                />
+                            </div>
+                        </div>
+                        <section className="stay-additional-info">
+                            <StayDetailsReviews reviews={stay.reviews} />
+                            {/* <StayDetailsMap stay={stay} /> */}
+                        </section>
+                    </section>)
             }
         </>
     )

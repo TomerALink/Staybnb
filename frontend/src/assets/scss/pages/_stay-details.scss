@@ -1,8 +1,16 @@
 .stay-details {
-    // max-width: 1120px;
-    margin-left: 7%;
-    margin-right: 7%;
 
+    // max-width: 1120px;
+    // margin-left: 7%;
+    // margin-right: 7%;
+    .middle-layout{
+
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        .left-side-container{
+            margin-right: 6rem;
+        }
+    }
     .stay-share-save {
         font-family: AirbnbCereal_W_Bk;
         display: flex;

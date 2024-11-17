@@ -3,6 +3,7 @@ import { utilService } from '../../services/util.service.js'
 
 export function StayDetailsConciseInfo({ type, loc, capacity, bedrooms, bathrooms, avgRating, numReviews }) {
     return (
+        
         <div className="stay-concise-info">
 
             <p className="stay-concise-location">
