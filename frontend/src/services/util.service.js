@@ -135,14 +135,19 @@ function pluralize(count, singular, plural = null) {
   return `${count} ${plural || singular + 's'}`
 }
 
-function calcAvgRating(reviews) {
-  if (!reviews || reviews.length === 0) {
-    return null
-  }
-  const sum = reviews.reduce((acc, review) => acc + review.rate, 0)
-  const numDecimal = ((100 * sum / reviews.length) % 100 === 0) ? 1 : 2
-  return (sum / reviews.length).toFixed(numDecimal)
+function calcAvgRating() {
+  return getRandomDecimal()
 }
+
+// function calcAvgRating(reviews) {
+  
+//   if (!reviews || reviews.length === 0) {
+//     return null
+//   }
+//   const sum = reviews.reduce((acc, review) => acc + review.rate, 0)
+//   const numDecimal = ((100 * sum / reviews.length) % 100 === 0) ? 1 : 2
+//   return (sum / reviews.length).toFixed(numDecimal)
+// }
 
 
 function getMonthReview(date) {

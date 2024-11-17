@@ -65,7 +65,9 @@ async function query(filterBy = getDefaultFilter()) {
 }
 
 function getById(stayId) {
-  return storageService.get(STORAGE_KEY, stayId)
+  const stay = storageService.get(STORAGE_KEY, stayId)
+  console.log(stay)
+  return stay
 }
 
 function remove(stayId) {

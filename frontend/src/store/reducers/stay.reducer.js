@@ -2,6 +2,7 @@ import { stayService } from "../../services/stay.service.js"
 
 //* Stays
 export const SET_STAYS = 'SET_STAYS'
+export const SET_STAY = 'SET_STAY'
 export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
@@ -18,6 +19,7 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
     stays: [],
+    stay: null,
     isWishListShown: false,
     wishList: [],
     isLoading: false,
@@ -28,6 +30,8 @@ const initialState = {
 export function stayReducer(state = initialState, action = {}) {
     switch (action.type) {
         //* Stays
+        case SET_STAY:
+            return { ...state, stay: action.stay }
         case SET_STAYS:
             return { ...state, stays: action.stays }
         case REMOVE_STAY:
