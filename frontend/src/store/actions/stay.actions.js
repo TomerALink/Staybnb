@@ -1,11 +1,12 @@
 import { stayService } from "../../services/stay.service.js";
 import { showSuccessMsg } from "../../services/event-bus.service.js";
-import { ADD_STAY, STAY_UNDO, REMOVE_STAY, SET_STAYS, SET_FILTER_BY, SET_IS_LOADING, UPDATE_STAY } from "../reducers/stay.reducer.js";
+import { ADD_STAY, STAY_UNDO, REMOVE_STAY, SET_STAYS, SET_STAY, SET_FILTER_BY, SET_IS_LOADING, UPDATE_STAY } from "../reducers/stay.reducer.js";
 import { store } from "../store.js";
+import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 
 export function loadStays() {
     const filterBy = store.getState().stayModule.filterBy
-    // store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+    store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     return stayService.query(filterBy)
         .then(stays => {
             store.dispatch({ type: SET_STAYS, stays })
@@ -17,6 +18,22 @@ export function loadStays() {
         .finally(() => {
             store.dispatch({ type: SET_IS_LOADING, isLoading: false })
         })
+}
+
+export async function loadStay(stayId) {
+    try {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+     
+        const stay = await stayService.getById(stayId)
+
+        store.dispatch({ type: SET_STAY, stay })
+    } catch (err) {
+        console.log('Cannot load stay', err)
+        throw err
+    } finally {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+        
+    }
 }
 
 export function removeStay(stayId) {

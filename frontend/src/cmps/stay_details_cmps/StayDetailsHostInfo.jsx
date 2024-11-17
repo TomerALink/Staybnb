@@ -33,7 +33,7 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
             )}
 
             <div className="host-concise-info">
-                <img src={host.imgUrl} alt="host image" />
+                <img src={host.picture} alt="host image" />
                 <p>
                     <span className="host-hosted-by">
                         {`Hosted by ${host.fullname}`}

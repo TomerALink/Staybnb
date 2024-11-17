@@ -33,7 +33,8 @@ export function StayDetailsReviews({ reviews }) {
                 </span>
 
                 <div className="reviews-list">
-                    {reviews.slice(0, maxShowReviews).map((review, index) => (
+                    {/* {reviews.slice(0, maxShowReviews).map((review, index) => ( */}
+                    {reviews.map((review, index) => (
                         <article className="review" key={index}>
                             <div className="review-user-info">
                                 <img src={review.by.imgUrl} alt="user-image" />
@@ -45,7 +46,7 @@ export function StayDetailsReviews({ reviews }) {
 
                             <div className="review-concise-info">
                                 <span className="rating-stars">
-                                    {[...Array(Math.round(review.rate))].map((_, index) => (
+                                    {/* {[...Array(Math.round(review.rate))].map((_, index) => (
                                         <img key={index} src="/src/assets/img/star.svg" className="present-star" alt="star icon" />
                                     ))}
                                     {[...Array(5 - Math.round(review.rate))].map((_, index) => (
@@ -57,7 +58,7 @@ export function StayDetailsReviews({ reviews }) {
                                         >
                                             <path d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
                                         </svg>
-                                    ))}
+                                    ))} */}
                                 </span>
                                 {' · '}
                                 <span className="review-month">{utilService.getMonthReview(review.at)}</span>
@@ -86,7 +87,8 @@ export function StayDetailsReviews({ reviews }) {
                                 <div className="stay-reviews" id="reviews">
                                     <span className="reviews-main-header">
                                         <img src="/src/assets/img/star.svg" alt="star-icon" />
-                                        {avgRating}{' · '}{utilService.pluralize(numReviews, 'review')}
+                                        {/* {avgRating} */}
+                                        {' · '}{utilService.pluralize(numReviews, 'review')}
                                     </span>
                                     <div className="reviews-list">
                                         {reviews.map((review, index) => (
@@ -102,7 +104,7 @@ export function StayDetailsReviews({ reviews }) {
                                                 <div className="review-concise-info">
 
                                                     <span className="rating-stars">
-                                                        {[...Array(Math.round(review.rate))].map((_, index) => (
+                                                        {/* {[...Array(Math.round(review.rate))].map((_, index) => (
                                                             <img key={index} src="/src/assets/img/star.svg" className="present-star" alt="star icon" />
                                                         ))}
                                                         {[...Array(5 - Math.round(review.rate))].map((_, index) => (
@@ -113,7 +115,7 @@ export function StayDetailsReviews({ reviews }) {
                                                             >
                                                                 <path d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
                                                             </svg>
-                                                        ))}
+                                                        ))} */}
                                                     </span>
                                                     {' · '}
                                                     <span className="review-month">{utilService.getMonthReview(review.at)}</span>
