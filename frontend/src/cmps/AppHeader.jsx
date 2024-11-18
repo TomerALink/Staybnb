@@ -43,18 +43,18 @@ export function AppHeader() {
     }
 	return (
 
-		<div className='header-container full main-layout'>
+		<div className={`header-container full   main-layout `}>
 			{ showMenu && <HamburgerMenu loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} menuBtn={menuBtn}  setShowMenu={setShowMenu} />}
 			<div className='top-header-container full'>
 
 
-				<header className="app-header full main-layout">
+				<header className={`app-header full main-layout ${location.pathname.startsWith('/stay/details') ? 'max-width' :''}`}>
 					<section className="top-header">
 						<Link to="/"><Logo /></Link>
 
 
 
-						{(!location.pathname.startsWith('/stay/details') || isScrolled) && (
+						{(location.pathname.startsWith('/stay/details') || isScrolled) && (
 							<section className='stay-experience-btns'>
 								<Link className="btn-active" to="/">Stays</Link>
 								<button className="btn">Experiences</button>
@@ -75,7 +75,7 @@ export function AppHeader() {
 
 
 					{(!location.pathname.startsWith('/stay/details') || !isScrolled) &&
-						<section className='serch-filter-container'>
+						<section className={`serch-filter-container`}>
 							<StayFilter filterBy={filterBy} defaultFilter={defaultFilter} />
 						</section>}
 				</header>
