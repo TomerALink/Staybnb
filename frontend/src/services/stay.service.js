@@ -81,7 +81,17 @@ function save(stay) {
   //   return storageService.put(STORAGE_KEY, stay)
   // } else {
     // when switching to backend - remove the next line
-    stay.host = userService.getLoggedinUser()
+    stay.host = userService.getLoggedinUser() ? userService.getLoggedinUser() : {"host": {
+          "_id": "622f3403e36c59e6164faf93",
+          "fullname": "Patty And Beckett",
+          "location": "Eureka, California, United States",
+          "about": "Adventurous couple loves to travel :)",
+          "responseTime": "within an hour",
+          "thumbnailUrl": "https://a0.muscache.com/im/pictures/542dba0c-eb1b-4ab3-85f3-94d3cc8f87a4.jpg?aki_policy=profile_small",
+          "pictureUrl": "https://a0.muscache.com/im/pictures/542dba0c-eb1b-4ab3-85f3-94d3cc8f87a4.jpg?aki_policy=profile_x_medium",
+          "isSuperhost": true,
+          "id": "36133410"
+      }}
     return storageService.post(STORAGE_KEY, stay)
   // }
 }
@@ -787,7 +797,10 @@ function getDefaultFilter() {
     endDate:  '',
     minPrice:  0,
     maxPrice:  0,
-    guests:  {} }
+    guests:  {adults: 2,
+      children: 0,
+      infants: 0,
+      pets: 0,} }
 }
 
 

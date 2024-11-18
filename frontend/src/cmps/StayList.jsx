@@ -32,7 +32,7 @@ export function StayList({currentPos}) {
 
     return <section>
         <div className='list-container'>
-        {console.log(currentPos)}
+      
             <ul className="list">
                 {stays.map(stay =>
                     <li onClick={()=>onNavigatToDetiles(stay._id)} key={stay._id}>

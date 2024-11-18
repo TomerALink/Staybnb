@@ -68,7 +68,6 @@ export function StayPreview({currentPos, stay }) {
                 <div className="stay-preview-distance">
                 
                     {/* {stay.summary} */}
-                    {console.log(currentPos)}
                     {stayService.calculateDistance(currentPos.latitude , currentPos.longitude, stay.loc.lat, stay.loc.lan)} kilometers away
                 </div>
                 {/* <div className="stay-preview-date-range">{stay.dateRange}</div> */}

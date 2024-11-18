@@ -1,8 +1,14 @@
 .main-layout {
     display: grid;
+    // justify-items: center;
     grid-template-columns: 6rem minmax(auto, 1fr) 6rem;
 }
-
+.max-width{
+    max-width: 1320px;
+    // padding: 0, 200px;
+    margin: auto;
+    // align-self: center;
+}
 .main-layout > *:not(.full){
     grid-column: 2;
 }
