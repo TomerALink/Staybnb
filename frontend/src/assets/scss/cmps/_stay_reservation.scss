@@ -1,5 +1,5 @@
 .reservation {
-    min-width: rem(215px);
+    min-width: rem(289px);
     min-height: rem(423px);
     color: $gray7;
     margin-top: 2rem;
@@ -149,6 +149,17 @@
           outline: rem(2px) solid $gray7;
           outline-offset: -1px;
         }
+        .arrowDropDown {
+          width:15px;
+          margin: 10px;
+          transform: rotate(90deg);
+        }
+        .open {
+          
+          
+            transform: rotate(-90deg);
+          
+        }
       }
   
   
@@ -217,7 +228,7 @@
               width: rem(32px);
               height: rem(32px);
               border-radius: 50%;
-              border: 1px solid $gray2;
+              border: 1px solid $gray4;
               background: none;
               font-size: rem(16px);
               color: $gray7;

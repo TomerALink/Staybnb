@@ -3,16 +3,18 @@ import { DateRangePicker } from 'react-date-range'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { userService } from '../../services/user.service.js'
+import { StayConfirmation } from '../StayConfirmation.jsx'
 
 
-export function StayReservation({ stay, }) {
-  console.log(stay)
+export function StayReservation({ stay }) {
+  const [openModal, setOpenModal] = useState(false)
+  const [orderDetails, setOrderDetails] = useState({})
   const navigate = useNavigate()
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false)
   const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
   const { txt, tag, country, startDate, endDate, minPrice, maxPrice, guests } = filterBy
-  let isoStartDate = new Date(startDate) 
-  let isoEndDate = new Date(endDate) 
+  let isoStartDate = new Date(startDate)
+  let isoEndDate = new Date(endDate)
   const defaultNumberOfNights = 5
   const [numberOfNights, setNumberOfNights] = useState(calculateNumberOfNights(isoStartDate, isoEndDate) || defaultNumberOfNights)
   const [selectedgGuests, setSelectedgGuests] = useState(guests ? guests : {
@@ -21,7 +23,7 @@ export function StayReservation({ stay, }) {
     infants: 0,
     pets: 0,
   })
-  console.log(JSON.stringify(filterBy))
+
   const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
   const [dateRange, setDateRange] = useState([
     {
@@ -31,9 +33,8 @@ export function StayReservation({ stay, }) {
     },
   ])
 
-  let orderDetails = {}
+
   const [guest, setGuest] = useState(userService.getLoggedinUser())
-  console.log(guest)
 
   function handleDateSelect(ranges) {
     const startDateTimestamp = ranges.selection.startDate.getTime()
@@ -75,7 +76,7 @@ export function StayReservation({ stay, }) {
   }
 
   const subtotal = stay ? stay.price * numberOfNights : 0
-  const taxes = subtotal * 0.17 
+  const taxes = subtotal * 0.17
   const totalPrice = subtotal + taxes
   const averageRating = stay.reviews && stay.reviews.length > 0
     ? (stay.reviews.reduce((sum, review) => sum + review.rate, 0) / stay.reviews.length).toFixed(1)
@@ -84,9 +85,8 @@ export function StayReservation({ stay, }) {
 
   function handleReserve() {
 
-    console.log(typeof filterToEdit.startDate)
-    console.log(typeof filterToEdit.endDate)
-    orderDetails = {
+
+    setOrderDetails({
       hostId: {
         _id: stay.host._id,
         fullname: stay.host.fullname,
@@ -96,14 +96,15 @@ export function StayReservation({ stay, }) {
         _id: 'guest1',
         fullname: 'Guest User',
       },
+      img: stay.imgUrls[0],
       totalPrice,
       taxes,
-      startDate: (typeof filterToEdit.startDate === 'number') ? 
-      new Date (filterToEdit.startDate).toISOString().split('T')[0] :
-      new Date(Date.now()).toISOString().split('T')[0],
-      endDate: (typeof filterToEdit.endDate === 'number') ? 
-      new Date (filterToEdit.endDate).toISOString().split('T')[0] :
-      new Date(Date.now()).toISOString().split('T')[0],
+      startDate: (typeof filterToEdit.startDate === 'number') ?
+        new Date(filterToEdit.startDate).toISOString().split('T')[0] :
+        new Date(Date.now()).toISOString().split('T')[0],
+      endDate: (typeof filterToEdit.endDate === 'number') ?
+        new Date(filterToEdit.endDate).toISOString().split('T')[0] :
+        new Date(Date.now()).toISOString().split('T')[0],
       guests: {
         adults: guests.adults,
         children: guests.children,
@@ -123,11 +124,9 @@ export function StayReservation({ stay, }) {
       averageRating,
       reviewCount,
       pricePerNight: stay.price,
-    }
+    })
 
-    console.log(orderDetails)
-    // onToggleConfirmReservationModal() //todo
-    
+    setOpenModal(true)
   }
 
   return (
@@ -184,6 +183,7 @@ export function StayReservation({ stay, }) {
                 {selectedgGuests.pets > 0 && `, ${selectedgGuests.pets} pet${selectedgGuests.pets > 1 ? 's' : ''}`}
               </span>
             </div>
+            <img className={`arrowDropDown ${isGuestsDropdownOpen ? 'open' : ''}`} src="/src/assets/img/right.svg" alt="" />
           </button>
           <div className={`guests-dropdown ${isGuestsDropdownOpen ? 'active' : ''}`}>
             {[
@@ -211,7 +211,7 @@ export function StayReservation({ stay, }) {
                 </div>
               </div>
             ))}
-            <span onClick={()=>toggleGuestsDropdown()} className='close-btn'>Close</span>
+            <span onClick={() => toggleGuestsDropdown()} className='close-btn'>Close</span>
           </div>
         </div>
       </div>
@@ -238,6 +238,9 @@ export function StayReservation({ stay, }) {
           <span>${totalPrice.toFixed(2).toLocaleString()}</span>
         </div>
       </div>
+      {openModal &&
+        <StayConfirmation orderDetails={orderDetails} openModal={openModal} setOpenModal={setOpenModal} />
+      }
     </div>
   )
 }
