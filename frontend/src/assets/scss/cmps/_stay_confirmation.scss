@@ -1,0 +1,161 @@
+.confirmation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($gray6, 0.5);
+    z-index: 1;
+}
+
+.confirmation-modal {
+    background-color: $gray1;
+    padding: rem(24px);
+    border-radius: rem(12px);
+    max-width: rem(850px);
+    max-height: 75%;
+    overflow-y: auto;
+    position: relative;
+
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: rem(16px);
+        font-size: rem(22px);
+    }
+
+    .close-btn {
+        position: absolute;
+        right: rem(12px);
+        top: rem(12px);
+        width: rem(32px);
+        height: rem(32px);
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.stay-confirmation {
+    padding: 2rem 3.5rem;
+    font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+
+    .title {
+        display: flex;
+        align-items: flex-start;
+
+        h2 {
+            padding-left: .5rem;
+        }
+    }
+
+    hr {
+        border: 1px solid $gray2-5;
+    }
+
+    p {
+        line-height: .75;
+        color: $gray5;
+    }
+
+    .reservation-details-contsiner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .reservation-details {
+            margin-right: 7rem;
+
+            .details {
+                color: $gray5;
+            }
+
+            .peice-details {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .img-container {
+            padding: 1em;
+            border-radius: rem(12px);
+            box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+
+            img {
+                border-radius: rem(12px);
+            }
+        }
+    }
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+
+    .confirm-modal-btn {
+        margin: 1.5rem;
+        width: 30%;
+        padding: rem(14px);
+        color: $gray1;
+        border: none;
+        border-radius: rem(8px);
+        font-size: rem(16px);
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font: inherit;
+        height: rem(48px);
+        background: radial-gradient(103.95% 1413.54% at -3.95% 100%,
+                #d33753 0%,
+                #d13660 52.83%,
+                #c72d65 100%);
+        line-height: 19px;
+        margin-block-start: 1rem;
+        margin-block-end: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $branding;
+        }
+    }
+
+    .confirm-modal-btn.back {
+        background: radial-gradient(103.95% 1413.54% at -3.95% 100%,
+                #454444 0%,
+                #6b6869 52.83%,
+                #8d8789 100%);
+    }
+}
+
+.close-btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    .confirm-modal-btn {
+        width: 30%;
+        padding: rem(14px);
+        color: $gray1;
+        border: none;
+        border-radius: rem(8px);
+        font-size: rem(16px);
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font: inherit;
+        height: rem(48px);
+        background: radial-gradient(103.95% 1413.54% at -3.95% 100%,
+                #454444 0%,
+                #6b6869 52.83%,
+                #8d8789 100%);
+        line-height: 19px;
+        margin-block-start: 1rem;
+        margin-block-end: 0.5rem;
+        cursor: pointer;
+
+
+        &:hover {
+            background-color: $branding;
+        }
+    }
+}
