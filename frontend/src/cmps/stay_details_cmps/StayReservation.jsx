@@ -122,7 +122,7 @@ export function StayReservation({ stay }) {
       numberOfNights,
       msgs: [],
       status: 'pending',
-      averageRating,
+      // averageRating,
       reviewCount,
       pricePerNight: stay.price,
     })
