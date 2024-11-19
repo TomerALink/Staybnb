@@ -47,10 +47,11 @@ export function HamburgerMenu({loggedinUser, setLoggedinUser, setShowMenu, menuB
 
         <br />
         <hr />
-        <div>Gift cards</div>
+        {/* <div>Gift cards</div> */}
+        <Link to="/stay/order"><div>My Orders</div></Link>
         <Link to="/stay/add"><div>Airbnb your home</div></Link>
-        <div>Host an experience</div>
-        <div>Help Center</div>
+        {/* <div>Host an experience</div> */}
+        {/* <div>Help Center</div> */}
       </div>
     )
 

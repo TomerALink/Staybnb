@@ -8,6 +8,7 @@ import { HomePage } from './pages/HomePage'
 import { StayDetails } from './pages/StayDetails'
 import { AddStay } from './pages/AddStay.jsx'
 import { GoogleAuthenticator } from './cmps/GoogleAuthenticator.jsx'
+import { StayOrderList } from './cmps/StayOrderList.jsx'
 
 
 
@@ -26,6 +27,7 @@ export function App() {
               <Route element={<GoogleAuthenticator />} path='/authenticator' />
               <Route path='/stay/details/:stayId' element={<StayDetails />} />
               <Route path='/stay/add' element={<AddStay/>} />
+              <Route path='/stay/order' element={<StayOrderList/>} />
             </Routes>
           </main>
           <AppFooter />

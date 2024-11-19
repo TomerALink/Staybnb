@@ -16,6 +16,7 @@ const initialState = {
     reservation: null,
     isLoading: false,
     lastReservations: []
+    
 }
 
 export function reservationReducer(state = initialState, action = {}) {
