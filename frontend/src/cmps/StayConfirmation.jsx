@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { saveReservation } from "../store/actions/reservation.actions"
 
 export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
 
@@ -6,7 +7,21 @@ export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
 
     function onConfirmClicked() {
         setConfirmed(true)
-        //addReservation() //TODO
+        onSaveReservation()
+    }
+
+    function onSaveReservation() {
+    
+        saveReservation(orderDetails)
+            .then(() => {
+                console.log('Reservation Saved!')
+                // showSuccessMsg('Reservation Saved!')
+                
+            })
+            .catch(err => {
+                console.log('Had issues in reservation details', err)
+                // showErrorMsg('Had issues in reservation details')
+            })
     }
 
     function onToggleModal() {

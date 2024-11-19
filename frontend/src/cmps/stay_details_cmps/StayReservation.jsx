@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { userService } from '../../services/user.service.js'
 import { StayConfirmation } from '../StayConfirmation.jsx'
+import { saveReservation } from "../../store/actions/reservation.actions.js"
 
 
 export function StayReservation({ stay }) {
