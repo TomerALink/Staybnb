@@ -61,6 +61,7 @@ export function removeReservationOptimistic(reservationId) {
 }
 
 export function saveReservation(reservation) {
+    console.log('llllllllllll',reservation)
     const type = reservation._id ? UPDATE_RESERVATION : ADD_RESERVATION
     return reservationsService.save(reservation)
         .then(savedReservation => {

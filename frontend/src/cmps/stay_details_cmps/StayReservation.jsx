@@ -18,12 +18,33 @@ export function StayReservation({ stay }) {
   let isoEndDate = new Date(endDate)
   const defaultNumberOfNights = 5
   const [numberOfNights, setNumberOfNights] = useState(calculateNumberOfNights(isoStartDate, isoEndDate) || defaultNumberOfNights)
-  const [selectedgGuests, setSelectedgGuests] = useState(guests ? guests : {
+
+  const defaultGuests = {
     adults: 2,
     children: 0,
     infants: 0,
     pets: 0,
-  })
+  }
+
+  const [selectedGuests, setSelectedGuests] = useState(defaultGuests);
+  useEffect(() => {
+    const fetchGuests = async () => {
+      try {
+        const resolvedGuests = await guests; // Wait for the promise to resolve
+        setSelectedGuests(resolvedGuests || defaultGuests); // Use resolved value or defaults
+      } catch (error) {
+        console.error("Failed to resolve guests:", error);
+        setSelectedGuests(defaultGuests); // Fallback to defaults on error
+      }
+    };
+  
+    // Check if guests is a promise
+    if (guests instanceof Promise) {
+      fetchGuests();
+    } else {
+      setSelectedGuests(guests || defaultGuests); // Handle the case where guests is not a promise
+    }
+  }, [guests]);
 
   const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
   const [dateRange, setDateRange] = useState([
@@ -66,8 +87,9 @@ export function StayReservation({ stay }) {
   }
 
   function handleGuestsChange(type, value) {
-    const newGuests = { ...guests, [type]: Math.max(0, value) }
-    setSelectedgGuests(newGuests)
+    console.log(type)
+    const newGuests = { ...selectedGuests, [type]: Math.max(0, value) }
+    setSelectedGuests(newGuests)
   }
 
   function calculateNumberOfNights(startDate, endDate) {
@@ -179,9 +201,9 @@ export function StayReservation({ stay }) {
             <div className="guests-content">
               <label>GUESTS</label>
               <span>
-                {selectedgGuests.adults + selectedgGuests.children} guests
-                {selectedgGuests.infants > 0 && `, ${selectedgGuests.infants} infant${selectedgGuests.infants > 1 ? 's' : ''}`}
-                {selectedgGuests.pets > 0 && `, ${selectedgGuests.pets} pet${selectedgGuests.pets > 1 ? 's' : ''}`}
+                {selectedGuests.adults + selectedGuests.children} guests
+                {selectedGuests.infants > 0 && `, ${selectedGuests.infants} infant${selectedGuests.infants > 1 ? 's' : ''}`}
+                {guests.pets > 0 && `, ${guests.pets} pet${guests.pets > 1 ? 's' : ''}`}
               </span>
             </div>
             <img className={`arrowDropDown ${isGuestsDropdownOpen ? 'open' : ''}`} src="/src/assets/img/right.svg" alt="" />
@@ -200,13 +222,13 @@ export function StayReservation({ stay }) {
                 </div>
                 <div className="guest-counter">
                   <button
-                    onClick={() => handleGuestsChange(type, selectedgGuests[type] - 1)}
-                    disabled={selectedgGuests[type] === 0 || (type === 'adults' && selectedgGuests[type] === 1)}
+                    onClick={() => handleGuestsChange(type, selectedGuests[type] - 1)}
+                    disabled={selectedGuests[type] === 0 || (type === 'adults' && selectedGuests[type] === 1)}
                   >
                     -
                   </button>
-                  <span>{selectedgGuests[type]}</span>
-                  <button onClick={() => handleGuestsChange(type, selectedgGuests[type] + 1)}>
+                  <span>{selectedGuests[type]}</span>
+                  <button onClick={() => handleGuestsChange(type, selectedGuests[type] + 1)}>
                     +
                   </button>
                 </div>
