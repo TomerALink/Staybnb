@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate  } from 'react-router-dom'
 import { GoogleAuthenticator } from './GoogleAuthenticator'
 import { logout } from '../store/actions/user.actions.js'
 import { userService } from '../services/user.service.js'
@@ -9,7 +9,7 @@ export function HamburgerMenu({loggedinUser, setLoggedinUser, setShowMenu, menuB
 
 
   const menuRef = useRef(null)
-
+  const navigate = useNavigate();
   useEffect(() => {
     // Handler to call when clicking outside
     function handleClickOutside(event) {
@@ -31,15 +31,20 @@ export function HamburgerMenu({loggedinUser, setLoggedinUser, setShowMenu, menuB
     setLoggedinUser(null)
   }
 
+  function clickMenuItem(link){
+    setShowMenu(false)
+    navigate(link); 
+  }
+
   return (
     (
-      <div ref={menuRef} className="hamburger-menu" onClick={(ev) => ev.stopPropagation()}>
+      <div ref={menuRef} className="hamburger-menu" >
 
         {loggedinUser ?
           <div onClick={() => onLogOut()}>Log out</div>
           :
           <>
-            <Link to="/authenticator"><div>Log in</div></Link>
+            <div onClick={()=> clickMenuItem('/authenticator')}>Log in</div>
             {/* <div>Sign up</div>  //Todo */}
           </>
         }
@@ -48,8 +53,9 @@ export function HamburgerMenu({loggedinUser, setLoggedinUser, setShowMenu, menuB
         <br />
         <hr />
         {/* <div>Gift cards</div> */}
-        <Link to="/stay/order"><div>My Orders</div></Link>
-        <Link to="/stay/add"><div>Airbnb your home</div></Link>
+        
+        <div onClick={()=> clickMenuItem('/stay/order')}>My Orders</div>
+        <div onClick={()=> clickMenuItem('/stay/add')}>Airbnb your home</div>
         {/* <div>Host an experience</div> */}
         {/* <div>Help Center</div> */}
       </div>
