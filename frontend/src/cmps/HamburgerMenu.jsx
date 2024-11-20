@@ -55,6 +55,7 @@ export function HamburgerMenu({loggedinUser, setLoggedinUser, setShowMenu, menuB
         {/* <div>Gift cards</div> */}
         
         <div onClick={()=> clickMenuItem('/stay/order')}>My Orders</div>
+        <div onClick={()=> clickMenuItem('/stay/Trip')}>My Trips</div>
         <div onClick={()=> clickMenuItem('/stay/add')}>Airbnb your home</div>
         {/* <div>Host an experience</div> */}
         {/* <div>Help Center</div> */}
