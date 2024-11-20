@@ -1,58 +1,77 @@
-.order-list-greeting{
-    color: $gray5;
-    font-size: larger;
-    font-weight: 600;
-    padding: 1rem 0;
-}
-
-.order-list-title{
-    display: grid;
-    grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
-    justify-items: center;
-    color: $gray6;
-    font-size: large;
-    font-weight: 600;
-    border-bottom: 1px solid $gray3;
-    padding: 1rem 0;
-}
-.stay-order-preview{
-    display: grid;
-    grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
-    justify-items: center;
-    color: $gray5;
-    border-bottom: 1px solid $gray3;
-    padding: 1rem 0;
+.order-list-container {
 
 
-    button{
-        background-color: transparent;
-        border-radius: 1.5rem;
-        margin-right: .5rem;
-        height: 2.5rem;
-        max-width: rem(100px);
-        cursor: pointer;
+    .orders-tag {
+        border-radius: 2rem;
+        background-color: $branding;
+        color: $gray1;
+        padding: 1rem;
+        font-weight: bolder;
+        font-size: 2.5rem;
+        width: fit-content;
+        margin-top: 1rem;
     }
 
-    .approve-btn{
-        color: green;
-        border: 2px solid green;
+    .order-list-greeting {
+        position: sticky;
+        color: $gray5;
+        font-size: larger;
+        font-weight: 600;
+        padding: 1rem 0;
     }
 
-    .decline-btn{
-        color: red;
-        border: 2px solid red;
+    .order-list-title {
+        position: sticky;
+        display: grid;
+        grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
+        justify-items: center;
+        color: $gray6;
+        font-size: large;
+        font-weight: 600;
+        border-bottom: 1px solid $gray3;
+        padding: 1rem 0;
     }
 
-    .pending{
-        color: orange;
-    }
-    .approve{
-        color: green;
-    }
+    .stay-order-preview {
+        display: grid;
+        grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
+        justify-items: center;
+        color: $gray5;
+        border-bottom: 1px solid $gray3;
+        padding: 1rem 0;
 
-    .decline{
-        color: red;
+
+        button {
+            background-color: transparent;
+            border-radius: 1.5rem;
+            margin-right: .5rem;
+            height: 2.5rem;
+            max-width: rem(100px);
+            cursor: pointer;
+        }
+
+        .approve-btn {
+            color: green;
+            border: 2px solid green;
+        }
+
+        .decline-btn {
+            color: red;
+            border: 2px solid red;
+        }
+
+        .pending {
+            color: orange;
+        }
+
+        .approve {
+            color: green;
+        }
+
+        .decline {
+            color: red;
+
+        }
 
     }
-
 }

@@ -33,6 +33,7 @@ export function StayOrderList({currentPos}) {
     return <>
     
         <div className='order-list-container'>
+            <div className='orders-tag'>Orders</div>
         <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayOrders.filter(obj => obj.status === "pending").length} pending orders</div>
         <div className='order-list-title'>
             <span>Customer Name</span>
