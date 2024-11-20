@@ -1,8 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import ImgSlider from './ImgSlider'
-import { utilService } from '../services/util.service'
-import { stayService } from '../services/stay.service'
 import { saveReservation } from "../store/actions/reservation.actions"
 
 export function StayTripPreview({ stayTrip }) {
@@ -28,8 +24,8 @@ export function StayTripPreview({ stayTrip }) {
     }
 
     useEffect(() => {
-        console.log("Status updated to:", status); // Logs after the state update
-    }, [status]);
+        console.log("Status updated to:", status)
+    }, [status])
 
     return (
 

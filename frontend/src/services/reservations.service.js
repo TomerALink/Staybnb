@@ -36,12 +36,12 @@ function remove(reservationsId) {
 
 
 function save(reservations) {
-  // if (reservations._id) { //TODO add dfter adding backend
-  //   return storageService.put(STORAGE_KEY, reservations)
-  // } else {
+  if (reservations._id) { //TODO add dfter adding backend
+    return storageService.put(STORAGE_KEY, reservations)
+  } else {
     // when switching to backend - remove the next line
     return storageService.post(STORAGE_KEY, reservations)
-  // }
+  }
 }
 
 
