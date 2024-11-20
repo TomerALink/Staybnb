@@ -80,7 +80,7 @@ export function AppHeader() {
 						</section>}
 				</header>
 			</div>
-			{!location.pathname.startsWith('/stay/details') &&
+			{!location.pathname.startsWith('/stay/') &&
 
 				<section className="bottom-header">
 					<TagFilter filterBy={filterBy} onSetFilter={onSetFilterBy} defaultFilter={defaultFilter} />
