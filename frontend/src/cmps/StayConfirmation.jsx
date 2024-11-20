@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { saveReservation } from "../store/actions/reservation.actions"
+import { useNavigate } from 'react-router-dom'
 
 export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
-
+    const navigate = useNavigate()
     const [confirmed, setConfirmed] = useState(false)
 
     function onConfirmClicked() {
@@ -26,6 +27,11 @@ export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
 
     function onToggleModal() {
         setOpenModal(!openModal)
+    }
+
+    function onBackClicked() {
+        onToggleModal()
+        navigate('/')
     }
     // console.log(orderDetails)
     const { adults, children, infants, pets } = orderDetails.guests
@@ -133,7 +139,7 @@ export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
                         :
                         <div className='btn-container'>
                             <button onClick={onConfirmClicked} className="confirm-modal-btn" >Confirm</button>
-                            <button onClick={onToggleModal} className="confirm-modal-btn back" >Back</button>
+                            <button onClick={onBackClicked} className="confirm-modal-btn back" >Back</button>
                         </div>
                     }
                 </div>

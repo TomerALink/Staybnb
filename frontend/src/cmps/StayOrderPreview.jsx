@@ -41,11 +41,14 @@ export function StayOrderPreview({ stayOrder }) {
             <span>
             ${ Number(`${stayOrder.pricePerNight * stayOrder.numberOfNights + stayOrder.taxes}`).toFixed(2)}
             </span>
-            <span className={`${status}`}>{status}</span>
+            {status === 'pending' ?
             <div>
             <button onClick={(event)=>updateStatus(event, 'approve')} className='approve-btn'>Approve</button>
             <button onClick={(event)=>updateStatus(event, 'decline')}  className='decline-btn'>Decline</button>
             </div>
+            :
+            <span className={`${status}`}>{status}</span>
+            }
 
         </div>
     )

@@ -170,9 +170,11 @@ export function StayReservation({ stay }) {
           </div>
           <div className="check-out">
             <label>CHECKOUT</label>
+            <span className="date-text">
             {filterToEdit.endDate
               ? new Date(filterToEdit.endDate).toLocaleDateString('en-GB')
               : 'Add dates'}
+              </span>
           </div>
           {isDateRangeVisible && (
             <section className="date-filter">

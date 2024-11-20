@@ -38,7 +38,6 @@ export function StayOrderList() {
             <span>Check out</span>
             <span>Total</span>
             <span>Status</span>
-            <span>Actions</span>
 
         </div>
             <ul className="clean-list">

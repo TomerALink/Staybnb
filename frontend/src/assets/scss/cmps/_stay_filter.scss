@@ -73,6 +73,7 @@
       height: 80%;
       outline: none;
       border-radius: 32px;
+      margin-left: rem(9px);
 
       &::placeholder {
         color: $gray5;
@@ -284,7 +285,7 @@
             height: rem(32px);
 
             border-radius: 50%;
-            border: 1px solid $gray7;
+            border: 1px solid $gray5;
             background: none;
             font-size: rem(16px);
             color: $gray7;

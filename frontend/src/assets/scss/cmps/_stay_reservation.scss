@@ -53,11 +53,24 @@
       .check-in{
         border-right: 1px solid $gray4;
         padding:0 4.5rem .5rem .5rem;
+        label{
+          padding-bottom: .5rem;
+        }
+        span {
+          font-size: 14px;
+        }
       }
 
       .check-out {
         left: .5rem;
+        label{
+          padding-bottom: .5rem;
+        }
+        span {
+          font-size: 14px;
+        }
       }
+
       .check-in,
       .check-out {
         cursor: pointer;
@@ -101,7 +114,6 @@
         label {
           display: block;
           font-weight: bold;
-          padding-left: rem(8px);
           padding-top: rem(10px);
           font-size: rem(10px);
           color: $gray7;
