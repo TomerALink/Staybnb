@@ -1,0 +1,50 @@
+.stay-trip-img{
+    border-radius: 1.25rem;
+    height: 100px;
+}
+
+.trip-list-title {
+    position: sticky;
+    display: grid;
+    grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
+    justify-items: center;
+    color: $gray6;
+    font-size: large;
+    font-weight: 600;
+    border-bottom: 1px solid $gray3;
+    padding: 1rem 0;
+    :nth-child(2) {
+        justify-self: start;
+        padding-left:  6rem;
+      }
+}
+
+.stay-trip-preview {
+    display: grid;
+    grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
+    align-items: center;
+    justify-items: center;
+    color: $gray5;
+    border-bottom: 1px solid $gray3;
+    padding: 1rem 0;
+    .stay-name{
+        
+        font-weight: 600;
+    }
+
+    .pending {
+        color: orange;
+        font-weight: 600;
+    }
+
+    .approve {
+        color: green;
+        font-weight: 600;
+    }
+
+    .decline {
+        color: red;
+        font-weight: 600;
+
+    }
+}

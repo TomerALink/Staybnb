@@ -1,4 +1,6 @@
 .order-list-container {
+    max-width: 2020px;
+    margin: auto;
 
 
     .orders-tag {
@@ -35,6 +37,7 @@
     .stay-order-preview {
         display: grid;
         grid-template-columns: 1fr 2fr repeat(4, 1fr) 2fr;
+        align-items: center;
         justify-items: center;
         color: $gray5;
         border-bottom: 1px solid $gray3;
@@ -62,14 +65,17 @@
 
         .pending {
             color: orange;
+            font-weight: 600;
         }
 
         .approve {
             color: green;
+            font-weight: 600;
         }
 
         .decline {
             color: red;
+            font-weight: 600;
 
         }
 
