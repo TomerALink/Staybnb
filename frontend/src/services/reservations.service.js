@@ -11,7 +11,8 @@ export const reservationsService = {
     remove,
 }
 
-async function query(filterBy = { txt: '', price: 0 }) {
+async function query(filterBy = {}) {
+    console.log(filterBy)
     return httpService.get(`order`, filterBy)
 }
 

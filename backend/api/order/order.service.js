@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb'
-
 import { logger } from '../../services/logger.service.js'
 import { makeId } from '../../services/util.service.js'
 import { dbService } from '../../services/db.service.js'
 import { asyncLocalStorage } from '../../services/als.service.js'
+import { socketService } from '../../services/socket.service.js'
 
 const PAGE_SIZE = 3
 
@@ -77,7 +77,7 @@ async function add(order) {
 	try {
 		const collection = await dbService.getCollection('order')
 		await collection.insertOne(order)
-
+		socketService.emitToUser({type: 'update-order-list', data: {orderId:order._id ,status: order.status}, userId: order.hostId._id})
 		return order
 	} catch (err) {
 		logger.error('cannot insert order', err)
@@ -86,14 +86,14 @@ async function add(order) {
 }
 
 async function update(order) {
-    const orderToSave = { vendor: order.vendor, speed: order.speed }
+    const orderToSave = { status: order.status }
 
     try {
         const criteria = { _id: ObjectId.createFromHexString(order._id) }
 
 		const collection = await dbService.getCollection('order')
 		await collection.updateOne(criteria, { $set: orderToSave })
-
+		socketService.emitToUser({type: 'update-order-status', data: {orderId:order._id ,status: order.status}, userId: order.guest._id})
 		return order
 	} catch (err) {
 		logger.error(`cannot update order ${order._id}`, err)
@@ -134,7 +134,11 @@ function _buildCriteria(filterBy) {
     const criteria = {
 
     }
-
+	// console.log('filterBy', filterBy)
+	if (filterBy.hostId) {
+		// console.log('yyyyyyyyyyyyyyyssssssssssssssss')
+		// criteria['loc.country'] = { $regex: filterBy.country, $options: 'i' }
+	}
     return criteria
 }
 

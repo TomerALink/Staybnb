@@ -161,7 +161,7 @@ function _buildCriteria(filterBy) {
 		criteria['capacity'] = { $gte: capacity }
 	}
 
-	console.log(criteria)
+
 	return criteria;
 }
 

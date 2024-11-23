@@ -15,7 +15,6 @@ export async function getStays(req, res) {
 			sortDir: req.query.sortDir || 1,
 			pageIdx: req.query.pageIdx,
 		}
-		console.log(filterBy)
 		const stays = await stayService.query(filterBy)
 		res.json(stays)
 	} catch (err) {

@@ -14,10 +14,6 @@ export function StayList({currentPos}) {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isLoading = useSelector(storeState => storeState.stayModule.isLoading)
 
-    function onSetFilter(filterBy) {
-        setFilterBy(filterBy)
-    }
-
     useEffect(() => {
         loadStays()
             .catch(err => {
