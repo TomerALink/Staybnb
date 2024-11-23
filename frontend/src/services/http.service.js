@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
   ? '/api/'
-  : '//localhost:3031/api/'
+  : '//localhost:3030/api/'
 
 const axios = Axios.create({
   withCredentials: true
@@ -13,6 +13,7 @@ export const httpService = {
     return ajax(endpoint, 'GET', data)
   },
   post(endpoint, data) {
+    console.log(BASE_URL)
     return ajax(endpoint, 'POST', data)
   },
   put(endpoint, data) {
@@ -24,7 +25,6 @@ export const httpService = {
 }
 
 function ajax(endpoint, method = 'GET', data = null) {
-  console.log(endpoint)
   return axios({
     url: `${BASE_URL}${endpoint}`,
     method,
@@ -37,7 +37,7 @@ function ajax(endpoint, method = 'GET', data = null) {
       console.dir(err)
       if (err.response && err.response.status === 401) {
         sessionStorage.clear()
-        window.location.assign('/')
+        // window.location.assign('/')
       }
       throw err
     })

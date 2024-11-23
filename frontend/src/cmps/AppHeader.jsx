@@ -67,7 +67,7 @@ export function AppHeader() {
 							<button className="btn btn-active"><img className='i18' src="/src/assets/img/i18.svg" alt="" /></button>
 							<button ref={menuBtn} onClick={onToggleMenu} className="btn btn-shadow">
 								<img className='burger' src="/src/assets/img/burger.svg" alt="" />
-								<img className='avatar' src={loggedinUser ? loggedinUser.picture ? loggedinUser.picture :"/src/assets/img/avatar.svg" :"/src/assets/img/avatar.svg"} alt="" />
+								<img className='avatar' src={loggedinUser ? loggedinUser.imgUrl ? loggedinUser.imgUrl :"/src/assets/img/avatar.svg" :"/src/assets/img/avatar.svg"} alt="" />
 							</button>
 							
 						</div>

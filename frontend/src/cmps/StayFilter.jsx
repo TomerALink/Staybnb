@@ -27,7 +27,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
     dispatch({ type: SET_FILTER_BY, filterBy: { ...defaultFilter } })
 
     const handleScroll = () => {
-      console.log("resetMenu", resetMenu)
+      // console.log("resetMenu", resetMenu)
       if (resetMenu) return
       if (window.scrollY != 0 || scrolled) {
         setSmallFilter()
@@ -50,7 +50,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
 
 
   function setSmallFilter() {
-    console.log("setSmallFilter")
+    // console.log("setSmallFilter")
     document.querySelector('.stay-filter').classList.add('scrolled')
     document.querySelector('.serch-filter-container').classList.add('scrolled')
     document.querySelector('.tag').classList.add('scrolled')
@@ -141,7 +141,6 @@ export function StayFilter({ filterBy, defaultFilter }) {
   }
 
   function setBigFilter() {
-    console.log("setBigFilter")
     document.querySelectorAll('.scrolled').forEach((elm) => {
       elm.classList.remove('scrolled')
     })
