@@ -43,9 +43,8 @@ export function StayTripList() {
 
         </div>
             <ul className="clean-list">
-                {stayTrips.map(stayTrip =>
+                {stayTrips.filter(stayTrip => stayTrip.guest._id === loggedinUser._id).map(stayTrip =>
                     <li onClick={()=>onNavigatToDetiles(stayTrip.stay._id)} key={stayTrip._id}>
-                        {console.log(stayTrip)}
                         <StayTripPreview stayTrip={stayTrip}/>
                     </li>)
                 }

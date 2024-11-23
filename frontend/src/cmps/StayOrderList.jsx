@@ -53,9 +53,8 @@ export function StayOrderList() {
 
         </div>
             <ul className="clean-list">
-                {stayOrders.map(stayOrder =>
-                    <li onClick={()=>onNavigatToDetiles(stayOrder.stay._id)} key={stayOrder._id}>
-                        {console.log(stayOrder)}
+                {stayOrders.filter(stayOrder => stayOrder.hostId._id === loggedinUser._id).map(stayOrder =>
+                        <li onClick={()=>onNavigatToDetiles(stayOrder.stay._id)} key={stayOrder._id}>
                         <StayOrderPreview stayOrder={stayOrder}/>
                     </li>)
                 }
