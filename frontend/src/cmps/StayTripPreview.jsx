@@ -1,10 +1,21 @@
 import { useEffect, useState } from 'react'
 import { saveReservation } from "../store/actions/reservation.actions"
+import { socketService, SOCKET_EVENT_UPDATE_ORDER_STATUS } from '../services/socket.service'
+import { userService } from '../services/user.service'
+
 
 export function StayTripPreview({ stayTrip }) {
 
     const [status, setStatus] = useState(stayTrip.status)
+   
     const [Trip, setTrip] = useState(stayTrip)
+  
+    const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser())
+
+    socketService.login(loggedinUser._id)
+    socketService.on(SOCKET_EVENT_UPDATE_ORDER_STATUS, (msg)=> {
+            if(msg.orderId===stayTrip._id) setStatus(msg.status)
+    })
 
     function updateStatus(ev, statusToUpdate) {
         ev.stopPropagation()

@@ -30,7 +30,7 @@ export function GoogleAuthenticator() {
   
     signupWithGoogle(data).then(()=>{
       setUser(data)
-        // document.location.href = '/'
+        document.location.href = '/'
     })
    
   }

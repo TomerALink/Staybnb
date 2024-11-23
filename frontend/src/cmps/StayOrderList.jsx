@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { setFilterBy } from '../store/actions/stay.actions.js'
 import { loadReservations } from '../store/actions/reservation.actions.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { StayOrderPreview } from './StayOrderPreview.jsx'
 import { userService } from '../services/user.service.js'
+import { socketService, SOCKET_EVENT_UPDATE_ORDER_LIST } from '../services/socket.service'
 
 
 export function StayOrderList() {
@@ -13,7 +15,17 @@ export function StayOrderList() {
     const isLoading = useSelector(storeState => storeState.stayModule.isLoading)
     const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser())
 
+
+    socketService.login(loggedinUser._id)
+    socketService.on(SOCKET_EVENT_UPDATE_ORDER_LIST, (msg)=> {
+        console.log(msg)
+        loadReservations()
+    })
+
+
     useEffect(() => {
+        const filterBy = { hostId: loggedinUser._id}
+        setFilterBy(filterBy)
         loadReservations()
             .catch(err => {
                 console.log('Cannot load stayOrders!')

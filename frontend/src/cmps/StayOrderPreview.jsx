@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 import ImgSlider from './ImgSlider'
 import { utilService } from '../services/util.service'
 import { stayService } from '../services/stay.service'
-import { saveReservation } from "../store/actions/reservation.actions"
+import { saveReservation } from '../store/actions/reservation.actions'
+
+
+
+
+
 
 export function StayOrderPreview({ stayOrder }) {
 
@@ -14,7 +19,12 @@ export function StayOrderPreview({ stayOrder }) {
         ev.stopPropagation()
         
         setStatus(statusToUpdate)
-        
+
+        const objToUpdte = {
+            orderId: stayOrder._id,
+            status: statusToUpdate
+        }
+    
         console.log(status)
         setOrder(prevOrder => ({
             ...prevOrder,
@@ -28,8 +38,8 @@ export function StayOrderPreview({ stayOrder }) {
     }
 
     useEffect(() => {
-        console.log("Status updated to:", status); // Logs after the state update
-    }, [status]);
+        console.log("Status updated to:", status) // Logs after the state update
+    }, [status])
 
     return (
 

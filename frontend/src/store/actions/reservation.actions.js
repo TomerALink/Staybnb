@@ -5,9 +5,9 @@ import { store } from "../store.js";
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer.js'
 
 export function loadReservations() {
-
+    const filterBy = store.getState().stayModule.filterBy
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    return reservationsService.query()
+    return reservationsService.query(filterBy)
         .then(reservations => {
             store.dispatch({ type: SET_RESERVATIONS, reservations })
         })
@@ -61,7 +61,6 @@ export function removeReservationOptimistic(reservationId) {
 }
 
 export function saveReservation(reservation) {
-    console.log('llllllllllll',reservation)
     const type = reservation._id ? UPDATE_RESERVATION : ADD_RESERVATION
     return reservationsService.save(reservation)
         .then(savedReservation => {

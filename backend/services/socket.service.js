@@ -14,6 +14,10 @@ export function setupSocketAPI(http) {
         socket.on('disconnect', socket => {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
+        socket.on('update-order-status', (objToUpdte) => {
+                    console.log('message: ' + JSON.stringify(objToUpdte))
+
+                  })
         socket.on('chat-set-topic', topic => {
             if (socket.myTopic === topic) return
             if (socket.myTopic) {
@@ -35,7 +39,7 @@ export function setupSocketAPI(http) {
             socket.join('watching:' + userId)
         })
         socket.on('set-user-socket', userId => {
-            logger.info(`Setting socket.userId = ${userId} for socket [id: ${socket.id}]`)
+            console.log(`Setting socket.userId = ${userId} for socket [id: ${socket.id}]`)
             socket.userId = userId
         })
         socket.on('unset-user-socket', () => {
@@ -54,6 +58,7 @@ function emitTo({ type, data, label }) {
 async function emitToUser({ type, data, userId }) {
     userId = userId.toString()
     const socket = await _getUserSocket(userId)
+    console.log(socket)
 
     if (socket) {
         logger.info(`Emiting event: ${type} to user: ${userId} socket [id: ${socket.id}]`)
