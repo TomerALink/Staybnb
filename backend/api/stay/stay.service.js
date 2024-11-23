@@ -155,12 +155,13 @@ function _buildCriteria(filterBy) {
 	if (filterBy.city) {
 		criteria['loc.city'] = { $regex: filterBy.city, $options: 'i' }
 	}
-	if (filterBy.guests) {
+	if (filterBy.guests.adults || filterBy.guests.children || filterBy.guests.infants) {
 		const capacity = +filterBy.guests.adults + +filterBy.guests.children + +filterBy.guests.infants
 
 		criteria['capacity'] = { $gte: capacity }
 	}
 
+	console.log(criteria)
 	return criteria;
 }
 
