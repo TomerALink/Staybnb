@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
-import { loginWithGoogle } from '../store/actions/user.actions.js'
+import { loginWithGoogle, signupWithGoogle } from '../store/actions/user.actions.js'
 import { useNavigate } from 'react-router-dom'
+import { LoginSignup } from './LoginSignup.jsx'
 
 
 export function GoogleAuthenticator() {
@@ -23,11 +24,15 @@ export function GoogleAuthenticator() {
     window.google.accounts.id.prompt() // Display the One Tap UI
   }, [])
 
-  const handleCredentialResponse = (response) => {
+  const handleCredentialResponse = async (response) => {
+    
     const data = jwtDecode(response.credential) // Decode the token
-    setUser(data)
-    loginWithGoogle(data)
-    document.location.href = '/'
+  
+    signupWithGoogle(data).then(()=>{
+      setUser(data)
+        // document.location.href = '/'
+    })
+   
   }
 
   const handleLogout = () => {
@@ -36,19 +41,20 @@ export function GoogleAuthenticator() {
   }
 
   return (
-    <div className='App'>
-      <h1>Google Login</h1>
+    <div >
+      <h1>Google Login !!!!</h1>
       {!user ? (
         <div id='google-signin'></div>
       ) : (
         <div>
-          {console.log(user)}
+          {/* {console.log(user)} */}
           <h2>Welcome, {user.name}</h2>
-          <img style={{ 'border-radius': '50%' }} src={user.picture} alt='Profile' />
+          <img style={{ 'borderRadius': '50%' }} src={user.picture} alt='Profile' />
           <p>Email: {user.email}</p>
           <button onClick={handleLogout}>Logout</button>
         </div>
       )}
+      <LoginSignup/>
     </div>
   )
 }

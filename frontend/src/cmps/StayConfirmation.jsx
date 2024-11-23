@@ -109,7 +109,7 @@ export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
                                             Service fee
                                         </div>
                                         <div>
-                                            ${orderDetails.taxes}
+                                        ${Number(`${orderDetails.taxes}`).toFixed(2)}
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
                                         Total
                                     </div>
                                     <div>
-                                    {Number(`${orderDetails.pricePerNight * orderDetails.numberOfNights + orderDetails.taxes}`).toFixed(2)}
+                                    ${Number(`${orderDetails.pricePerNight * orderDetails.numberOfNights + orderDetails.taxes}`).toFixed(2)}
                                         
                                     </div>
                                 </div>

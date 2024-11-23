@@ -1,55 +1,33 @@
-
+import { httpService } from './http.service'
 import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
 
 
+const STORAGE_KEY = 'orderDB'
 
-const STORAGE_KEY = 'reservationsDB'
-            
 export const reservationsService = {
-  query,
-  getById,
-  save,
-  remove,
+    query,
+    getById,
+    save,
+    remove,
 }
 
-
-async function query() {
-  var reservationss = await storageService.query(STORAGE_KEY)
-  
-  // reservationss = reservationss.filter((reservations) => reservations.host._id = userService.getLoggedinUser()._id ) // Todo get for current user
-
-  return reservationss
+async function query(filterBy = { txt: '', price: 0 }) {
+    return httpService.get(`order`, filterBy)
 }
 
-function getById(reservationsId) {
-  const reservations = storageService.get(STORAGE_KEY, reservationsId)
-  console.log(reservations)
-  return reservations
+function getById(orderId) {
+    return httpService.get(`order/${orderId}`)
 }
 
-function remove(reservationsId) {
-  // return Promise.reject('Not now!')
-  return storageService.remove(STORAGE_KEY, reservationsId)
+async function remove(orderId) {
+    return httpService.delete(`order/${orderId}`)
 }
-
-
-function save(reservations) {
-  if (reservations._id) { //TODO add dfter adding backend
-    return storageService.put(STORAGE_KEY, reservations)
-  } else {
-    // when switching to backend - remove the next line
-    return storageService.post(STORAGE_KEY, reservations)
-  }
+async function save(order) {
+    var savedOrder
+    if (order._id) {
+        savedOrder = await httpService.put(`order/${order._id}`, order)
+    } else {
+        savedOrder = await httpService.post('order', order)
+    }
+    return savedOrder
 }
-
-
-
-
-async function _createReservationss() {
-  const reservationss = await storageService.query(STORAGE_KEY)
-  
-}
-
-_createReservationss()

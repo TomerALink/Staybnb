@@ -7,8 +7,10 @@ import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 export function loadStays() {
     const filterBy = store.getState().stayModule.filterBy
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+    console.log("loadstays", filterBy)
     return stayService.query(filterBy)
         .then(stays => {
+            console.log(stays.length)
             store.dispatch({ type: SET_STAYS, stays })
         })
         .catch(err => {

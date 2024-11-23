@@ -45,6 +45,7 @@ export function HamburgerMenu({loggedinUser, setLoggedinUser, setShowMenu, menuB
           :
           <>
             <div onClick={()=> clickMenuItem('/authenticator')}>Log in</div>
+            <div onClick={()=> clickMenuItem('/authenticator')}>Sign up</div>
             {/* <div>Sign up</div>  //Todo */}
           </>
         }
