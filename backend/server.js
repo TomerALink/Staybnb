@@ -41,7 +41,10 @@ app.use('/api/user', userRoutes)
 app.use('/api/review', reviewRoutes)
 app.use('/api/stay', stayRoutes)
 app.use('/api/order', orderRoutes)
-
+app.get("/", (req, res) =>{
+    res.json({response: "hello"})
+}
+)
 setupSocketAPI(server)
 
 // Make every unhandled server-side-route match index.html
@@ -50,7 +53,7 @@ setupSocketAPI(server)
 // and allow vue/react-router to take it from there
 
 app.get('/**', (req, res) => {
-    res.sendFile(path.resolve('public/index.html'))
+    res.sendFile(path.resolve('./public/index.html'))
 })
 
 import { logger } from './services/logger.service.js'
