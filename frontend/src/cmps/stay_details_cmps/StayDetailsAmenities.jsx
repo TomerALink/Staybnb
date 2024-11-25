@@ -1,65 +1,106 @@
 import { useState } from 'react'
 import close from "/src/assets/img/close.svg"
+import tv from "/src/assets/amenities/amen-tv.svg"
+import wifi from "/src/assets/amenities/amen-wifi.svg"
+import ethernet from  "/src/assets/amenities/amen-ethernet.svg"
+import essentials from "/src/assets/amenities/amen-essentials.svg"
+import first_aid from "/src/assets/amenities/amen-first-aid.svg"
+import elevator from  "/src/assets/amenities/amen-elevator.svg"
+import air_conditioning from  "/src/assets/amenities/amen-air-conditioning.svg"
+import heating from  "/src/assets/amenities/amen-heating.svg"
+import fire_extinguisher from  "/src/assets/amenities/amen-fire-extinguisher.svg"
+import detector from   "/src/assets/amenities/amen-detector.svg"
+import hot_water from  "/src/assets/amenities/amen-hot-water.svg"
+import shampoo from   "/src/assets/amenities/amen-shampoo.svg"
+import hair_dryer from "/src/assets/amenities/amen-hair-dryer.svg"
+import washer from  "/src/assets/amenities/amen-washer.svg"
+import dryer from  "/src/assets/amenities/amen-dryer.svg"
+import iron from  "/src/assets/amenities/amen-iron.svg"
+import extra_pillow from  "/src/assets/amenities/amen-extra-pillow.svg"
+import bed_linens from  "/src/assets/amenities/amen-bed-linens.svg"
+import hangers from "/src/assets/amenities/amen-hangers.svg"
+import room_darkening from "/src/assets/amenities/amen-room-darkening.svg"
+import kitchen from "/src/assets/amenities/amen-kitchen.svg"
+import pool from  "/src/assets/amenities/amen-pool.svg"
+import hot_tub from  "/src/assets/amenities/amen-hot-tub.svg"
+import gym from  "/src/assets/amenities/amen-gym.svg"
+import waterfront from  "/src/assets/amenities/amen-waterfront.svg"
+import beach_front from   "/src/assets/amenities/amen-beachfront.svg"
+import kid_friendly from   "/src/assets/amenities/amen-kid-friendly.svg"
+import workspace from   "/src/assets/amenities/amen-workspace.svg"
+import events from   "/src/assets/amenities/amen-events.svg"
+import pets from  "/src/assets/amenities/amen-pets.svg"
+import smoking from   "/src/assets/amenities/amen-smoking.svg"
+import parking from   "/src/assets/amenities/amen-parking.svg"
+import disabled from   "/src/assets/amenities/amen-disabled.svg"
+import wide_entrance from   "/src/assets/amenities/amen-wide-enrtance.svg"
+import bed from "/src/assets/amenities/amen-bed.svg"
+import security from "/src/assets/amenities/amen-security.svg"
+import check_in from "/src/assets/amenities/amen-check-in.svg"
+import safety_card from  "/src/assets/amenities/amen-safety-card.svg"
+import long_term from  "/src/assets/amenities/amen-long-term.svg"
+import luggage from  "/src/assets/amenities/amen-luggage.svg"
+import building_stuff from  "/src/assets/amenities/amen-building-stuff.svg"
 
 export function StayDetailsAmenities({ amenities }) {
 
     //"/src/assets/amenities/amen-....svg"
     
     const amenitiesDict = {
-        "TV": "/src/assets/amenities/amen-tv.svg",
-        "Cable TV": "/src/assets/amenities/amen-tv.svg",
-        "Internet": "/src/assets/amenities/amen-wifi.svg",
-        "Wifi": "/src/assets/amenities/amen-wifi.svg",
-        "Ethernet connection": "/src/assets/amenities/amen-ethernet.svg",
-        "Essentials": "/src/assets/amenities/amen-essentials.svg",
-        "First aid kit": "/src/assets/amenities/amen-first-aid.svg",
-        "Elevator": "/src/assets/amenities/amen-elevator.svg",
-        "Air conditioning": "/src/assets/amenities/amen-air-conditioning.svg",
-        "Heating": "/src/assets/amenities/amen-heating.svg",
-        "Fire extinguisher": "/src/assets/amenities/amen-fire-extinguisher.svg",
-        "Smoke detector": "/src/assets/amenities/amen-detector.svg",
-        "Carbon monoxide detector": "/src/assets/amenities/amen-detector.svg",
-        "Hot water": "/src/assets/amenities/amen-hot-water.svg",
-        "Shampoo": "/src/assets/amenities/amen-shampoo.svg",
-        "Hair dryer": "/src/assets/amenities/amen-hair-dryer.svg",
-        "Washer": "/src/assets/amenities/amen-washer.svg",
-        "Dryer": "/src/assets/amenities/amen-dryer.svg",
-        "Iron": "/src/assets/amenities/amen-iron.svg",
-        "Extra pillows and blankets": "/src/assets/amenities/amen-extra-pillow.svg",
-        "Bed linens": "/src/assets/amenities/amen-bed-linens.svg",
-        "Hangers": "/src/assets/amenities/amen-hangers.svg",
-        "Room-darkening shades": "/src/assets/amenities/amen-room-darkening.svg",
-        "Kitchen": "/src/assets/amenities/amen-kitchen.svg",
-        "Cooking basics": "/src/assets/amenities/amen-kitchen.svg",
-        "Pool": "/src/assets/amenities/amen-pool.svg",
-        "Hot tub": "/src/assets/amenities/amen-hot-tub.svg",
-        "Gym": "/src/assets/amenities/amen-gym.svg",
-        "Waterfront": "/src/assets/amenities/amen-waterfront.svg",
-        "Beachfront": "/src/assets/amenities/amen-beach-front.svg",
-        "Family/kid friendly": "/src/assets/amenities/amen-kid-friendly.svg",
-        "Laptop friendly workspace": "/src/assets/amenities/amen-workspace.svg",
-        "Suitable for events": "/src/assets/amenities/amen-events.svg",
-        "Pets allowed": "/src/assets/amenities/amen-pets.svg",
-        "Smoking allowed": "/src/assets/amenities/amen-smoking.svg",
-        "Disabled parking spot": "/src/assets/amenities/amen-parking.svg",
-        "Step-free access": "/src/assets/amenities/amen-disabled.svg",
-        "Flat path to front door": "/src/assets/amenities/amen-disabled.svg",
-        "Wheelchair accessible": "/src/assets/amenities/amen-disabled.svg",
-        "Wide doorway": "/src/assets/amenities/amen-wide-entrance.svg",
-        "Wide entryway": "/src/assets/amenities/amen-wide-entrance.svg",
-        "Wide hallway clearance": "/src/assets/amenities/amen-wide-entrance.svg",
-        "Wide clearance to bed": "/src/assets/amenities/amen-bed.svg",
-        "Well-lit path to entrance": "/src/assets/amenities/amen-security.svg",
-        "Private entrance": "/src/assets/amenities/amen-wide-entrance.svg",
-        "Ground floor access": "/src/assets/amenities/amen-wide-entrance.svg",
-        "24-hour check-in": "/src/assets/amenities/amen-check-in.svg",
-        "Self check-in": "/src/assets/amenities/amen-check-in.svg",
-        "Safety card": "/src/assets/amenities/amen-safety-card.svg",
-        "Free parking on premises": "/src/assets/amenities/amen-parking.svg",
-        "Long term stays allowed": "/src/assets/amenities/amen-long-term.svg",
-        "Luggage dropoff allowed": "/src/assets/amenities/amen-luggage.svg",
-        "Building staff": "/src/assets/amenities/amen-building-stuff.svg",
-        "Doorman": "/src/assets/amenities/amen-building-stuff.svg"
+        "TV": tv,
+        "Cable TV": tv,
+        "Internet": wifi,
+        "Wifi": wifi,
+        "Ethernet connection": ethernet,
+        "Essentials": essentials,
+        "First aid kit": first_aid,
+        "Elevator": elevator,
+        "Air conditioning": air_conditioning,
+        "Heating": heating,
+        "Fire extinguisher": fire_extinguisher,
+        "Smoke detector": detector,
+        "Carbon monoxide detector": detector,
+        "Hot water": hot_water,
+        "Shampoo": shampoo,
+        "Hair dryer": hair_dryer,
+        "Washer": washer,
+        "Dryer": dryer,
+        "Iron": iron,
+        "Extra pillows and blankets": extra_pillow,
+        "Bed linens": bed_linens,
+        "Hangers": hangers,
+        "Room-darkening shades": room_darkening,
+        "Kitchen": kitchen,
+        "Cooking basics": kitchen,
+        "Pool": pool,
+        "Hot tub": hot_tub,
+        "Gym": gym,
+        "Waterfront": waterfront,
+        "Beachfront": beach_front,
+        "Family/kid friendly": kid_friendly,
+        "Laptop friendly workspace": workspace,
+        "Suitable for events": events,
+        "Pets allowed": pets,
+        "Smoking allowed": smoking,
+        "Disabled parking spot": parking,
+        "Step-free access": disabled,
+        "Flat path to front door": disabled,
+        "Wheelchair accessible": disabled,
+        "Wide doorway": wide_entrance,
+        "Wide entryway": wide_entrance,
+        "Wide hallway clearance": wide_entrance,
+        "Wide clearance to bed": bed,
+        "Well-lit path to entrance": security,
+        "Private entrance": wide_entrance,
+        "Ground floor access": wide_entrance,
+        "24-hour check-in": check_in,
+        "Self check-in": check_in,
+        "Safety card": safety_card,
+        "Free parking on premises": parking,
+        "Long term stays allowed": long_term,
+        "Luggage dropoff allowed": luggage,
+        "Building staff": building_stuff,
+        "Doorman": building_stuff
     }
     const maxShowAmenities = 10
     const [showAll, setShowAll] = useState(false)
