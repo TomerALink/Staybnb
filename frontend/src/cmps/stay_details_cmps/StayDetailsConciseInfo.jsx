@@ -1,5 +1,6 @@
 
 import { utilService } from '../../services/util.service.js'
+import star from "/src/assets/img/star.svg"
 
 export function StayDetailsConciseInfo({ type, loc, capacity, bedrooms, bathrooms, avgRating, numReviews }) {
     return (
@@ -19,7 +20,7 @@ export function StayDetailsConciseInfo({ type, loc, capacity, bedrooms, bathroom
 
             {(numReviews > 0) && (
                 <p className="stay-concise-rate">
-                    <img src="/src/assets/img/star.svg" alt="star-icon" />
+                    <img src={star} alt="star-icon" />
                     {avgRating}{' · '}
 
                     < a href="#reviews" className="reviews-link">

@@ -7,20 +7,21 @@ import { Server } from 'socket.io'
 import { authRoutes } from './api/auth/auth.routes.js'
 import { userRoutes } from './api/user/user.routes.js'
 import { reviewRoutes } from './api/review/review.routes.js'
-
+import { fileURLToPath } from 'url';
 import { stayRoutes } from './api/stay/stay.routes.js'
 import { orderRoutes } from './api/order/order.routes.js'
 import { setupSocketAPI } from './services/socket.service.js'
-
 import { setupAsyncLocalStorage } from './middlewares/setupAls.middleware.js'
 
 const app = express()
 const server = http.createServer(app)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Express App Config
 app.use(cookieParser())
 app.use(express.json())
-
+app.use(express.static(path.join(__dirname, 'public')));
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve('public')))
 } else {
@@ -45,6 +46,7 @@ app.get("/", (req, res) =>{
     res.json({response: "hello"})
 }
 )
+
 setupSocketAPI(server)
 
 // Make every unhandled server-side-route match index.html
@@ -53,7 +55,7 @@ setupSocketAPI(server)
 // and allow vue/react-router to take it from there
 
 app.get('/**', (req, res) => {
-    res.sendFile(path.resolve('./public/index.html'))
+    res.sendFile(path.resolve('public/index.html'))
 })
 
 import { logger } from './services/logger.service.js'

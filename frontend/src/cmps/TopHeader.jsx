@@ -1,5 +1,8 @@
 import { Logo } from "./Logo";
 import { useNavigate } from 'react-router-dom'
+import i18 from "/src/assets/img/i18.svg"
+import burger from "/src/assets/img/burger.svg"
+import avatar from "/src/assets/img/avatar.svg"
 
 export function TopHeader() {
     const navigate = useNavigate()
@@ -16,8 +19,8 @@ export function TopHeader() {
             </section>
             <div>
                 <button onClick={onAirbnbYourHomeCliced} className="btn btn-active airbnb-your-home">Airbnb your home</button>
-                <button className="btn btn-active"><img className='i18' src="/src/assets/img/i18.svg" alt="" /></button>
-                <button className="btn btn-shadow"><img className='burger' src="/src/assets/img/burger.svg" alt="" /><img className='avatar' src="/src/assets/img/avatar.svg" alt="" /></button>
+                <button className="btn btn-active"><img className='i18' src={i18} alt="" /></button>
+                <button className="btn btn-shadow"><img className='burger' src={burger} alt="" /><img className='avatar' src={avatar} alt="" /></button>
             </div>
         </section>
     )

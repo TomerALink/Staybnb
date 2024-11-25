@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { userService } from '../../services/user.service.js'
 import { StayConfirmation } from '../StayConfirmation.jsx'
 import { saveReservation } from "../../store/actions/reservation.actions.js"
+import right from "/src/assets/img/right.svg"
 
 
 export function StayReservation({ stay }) {
@@ -208,7 +209,7 @@ export function StayReservation({ stay }) {
                 {guests.pets > 0 && `, ${guests.pets} pet${guests.pets > 1 ? 's' : ''}`}
               </span>
             </div>
-            <img className={`arrowDropDown ${isGuestsDropdownOpen ? 'open' : ''}`} src="/src/assets/img/right.svg" alt="" />
+            <img className={`arrowDropDown ${isGuestsDropdownOpen ? 'open' : ''}`} src={right} alt="" />
           </button>
           <div className={`guests-dropdown ${isGuestsDropdownOpen ? 'active' : ''}`}>
             {[

@@ -1,3 +1,5 @@
+import share from "/src/assets/img/share.svg"
+import heart_empty from "/src/assets/img/heart-empty.svg"
 
 export function StayDetailsShareSave({ name }) {
 
@@ -6,11 +8,11 @@ export function StayDetailsShareSave({ name }) {
             <h1 className="stay-title">{name}</h1>
             <div className="share-save-btns">
                 <button className="btn share">
-                    <img src="/src/assets/img/share.svg" alt="share-icon" />
+                    <img src={share} alt="share-icon" />
                     Share
                 </button>
                 <button className="btn save">
-                    <img src="/src/assets/img/heart-empty.svg" alt="heart-empty-icon" />
+                    <img src={heart_empty} alt="heart-empty-icon" />
                     Save
                 </button>
             </div>

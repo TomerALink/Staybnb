@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import close from "/src/assets/img/close.svg"
 
 export function StayDetailsAmenities({ amenities }) {
 
@@ -91,7 +92,7 @@ export function StayDetailsAmenities({ amenities }) {
                 <div className="amenities-modal-overlay" onClick={onToggleModal}>
                     <div className="amenities-modal" onClick={(ev) => ev.stopPropagation()}>
                         <button onClick={onToggleModal} className="close-btn">
-                            <img src="/src/assets/img/close.svg" alt="close-icon" />
+                            <img src={close} alt="close-icon" />
                         </button>
                         <h2>What this place offers</h2>
                         <ul className="amenities-list">

@@ -1,5 +1,7 @@
 import { utilService } from '../../services/util.service.js'
 import { useState } from 'react'
+import star from "/src/assets/img/star.svg"
+import close from "/src/assets/img/close.svg"
 
 export function StayDetailsReviews({ reviews }) {
     const avgRating = utilService.calcAvgRating(reviews)
@@ -28,7 +30,7 @@ export function StayDetailsReviews({ reviews }) {
         return (
             <div className="stay-reviews" id="reviews">
                 <span className="reviews-main-header">
-                    <img src="/src/assets/img/star.svg" alt="star-icon" />
+                    <img src={star} alt="star-icon" />
                     {avgRating}{' · '}{utilService.pluralize(numReviews, 'review')}
                 </span>
 
@@ -81,12 +83,12 @@ export function StayDetailsReviews({ reviews }) {
                         <div className="reviews-modal-overlay" onClick={onToggleModal}>
                             <div className="reviews-modal" onClick={(ev) => ev.stopPropagation()}>
                                 <button onClick={onToggleModal} className="close-btn">
-                                    <img src="/src/assets/img/close.svg" alt="close-icon" />
+                                    <img src={close} alt="close-icon" />
                                 </button>
 
                                 <div className="stay-reviews" id="reviews">
                                     <span className="reviews-main-header">
-                                        <img src="/src/assets/img/star.svg" alt="star-icon" />
+                                        <img src={star} alt="star-icon" />
                                         {/* {avgRating} */}
                                         {' · '}{utilService.pluralize(numReviews, 'review')}
                                     </span>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { saveReservation } from "../store/actions/reservation.actions"
 import { useNavigate } from 'react-router-dom'
+import check from '/src/assets/img/check.png'
 
 export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
     const navigate = useNavigate()
@@ -42,7 +43,7 @@ export function StayConfirmation({ orderDetails, openModal, setOpenModal }) {
                     <div className="stay-confirmation">
                         <div>{confirmed ?
                             <div className='title'>
-                                <img src='/src/assets/img/check.png' alt="" />
+                                <img src={check} alt="" />
                                 <h2>Reserved successfully</h2>
                             </div>
                             :

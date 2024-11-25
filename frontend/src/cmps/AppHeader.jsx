@@ -8,12 +8,14 @@ import { Logo } from "../cmps/Logo.jsx"
 import { HamburgerMenu } from './HamburgerMenu.jsx'
 import { useEffect, useRef, useState } from 'react'
 import { userService } from '../services/user.service.js'
-
+import svg_i18 from '/src/assets/img/i18.svg'
+import burger from '/src/assets/img/burger.svg'
+import avatar from "/src/assets/img/avatar.svg"
 
 
 
 export function AppHeader() {
-	
+
 	const [showMenu, setShowMenu] = useState(false)
 	const location = useLocation()
 	const dispatch = useDispatch()
@@ -21,13 +23,13 @@ export function AppHeader() {
 	const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser())
 	// Special hook for accessing search-params:
 	const [searchParams, setSearchParams] = useSearchParams()
-	 
-	
+
+
 	const defaultFilter = stayService.getFilterFromSearchParams(searchParams)
 	const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
 	useEffect(() => {
-	
+
 	}, [loggedinUser])
 
 	function onSetFilterBy(filterBy) {
@@ -40,15 +42,15 @@ export function AppHeader() {
 			const newShowMenu = !prevShowMenu
 			return newShowMenu
 		})
-    }
+	}
 	return (
 
 		<div className={`header-container full   main-layout `}>
-			{ showMenu && <HamburgerMenu loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} menuBtn={menuBtn}  setShowMenu={setShowMenu} />}
+			{showMenu && <HamburgerMenu loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} menuBtn={menuBtn} setShowMenu={setShowMenu} />}
 			<div className='top-header-container full'>
 
 
-				<header className={`app-header full main-layout ${location.pathname.startsWith('/stay/details') ? 'max-width' :''}`}>
+				<header className={`app-header full main-layout ${location.pathname.startsWith('/stay/details') ? 'max-width' : ''}`}>
 					<section className="top-header">
 						<Link to="/"><Logo /></Link>
 
@@ -64,12 +66,24 @@ export function AppHeader() {
 
 						<div>
 							<Link className="btn btn-active airbnb-your-home" to="/stay/add">Airbnb your home</Link>
-							<button className="btn btn-active"><img className='i18' src="/src/assets/img/i18.svg" alt="" /></button>
+							<button className="btn btn-active"><img className='i18' src={svg_i18} alt="" /></button>
 							<button ref={menuBtn} onClick={onToggleMenu} className="btn btn-shadow">
-								<img className='burger' src="/src/assets/img/burger.svg" alt="" />
-								<img className='avatar' src={loggedinUser ? loggedinUser.imgUrl ? loggedinUser.imgUrl :"/src/assets/img/avatar.svg" :"/src/assets/img/avatar.svg"} alt="" />
+								<img className='burger' src={burger} alt="" />
+								{loggedinUser?.imgUrl ?
+									(<img
+										className="avatar"
+										src={loggedinUser.imgUrl}
+										alt=""
+									/>)
+									:
+									(<img
+										className="avatar"
+										src={avatar}
+								
+										alt=""
+									/>)}
 							</button>
-							
+
 						</div>
 					</section>
 
