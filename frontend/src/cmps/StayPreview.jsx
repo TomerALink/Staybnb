@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ImgSlider from './ImgSlider'
 import { utilService } from '../services/util.service'
 import { stayService } from '../services/stay.service'
+import star from "/src/assets/img/star.svg"
 
 export function StayPreview({currentPos, stay }) {
 
@@ -59,7 +60,7 @@ export function StayPreview({currentPos, stay }) {
                     </div>
                     <div>
                         <div className="stay-preview-rating">
-                            <img className='stay-preview-star-icon' src={"/src/assets/img/star.svg"} alt="" />
+                            <img className='stay-preview-star-icon' src={star} alt="" />
                             {/* {formatRate(stayRating)} */}
                             {utilService.getRandomDecimal()}
                         </div>

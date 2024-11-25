@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import left from "/src/assets/img/left.svg"
+import right from "/src/assets/img/right.svg"
 
 
 export default function SimpleSlider({ imgUrls, isOnWishList, addToWishList }) {
@@ -50,12 +52,12 @@ export default function SimpleSlider({ imgUrls, isOnWishList, addToWishList }) {
       </div>
       {imgIndex > 0 &&
         <button onClick={(event)=>showPrevImg(event)} className="btn-img-slider" style={{ left: 0 }}>
-          <img src="/src/assets/img/left.svg" alt="" />
+          <img src={left} alt="" />
         </button>
       }
       {imgIndex < imgUrls.length - 1 &&
         <button onClick={(event)=>showNextImg(event)} className="btn-img-slider" style={{ right: 0 }}>
-          <img src="/src/assets/img/right.svg" alt="" />
+          <img src={right} alt="" />
         </button>
       }
       <div className="white-dots">

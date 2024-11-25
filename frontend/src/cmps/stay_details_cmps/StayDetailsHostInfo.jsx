@@ -1,4 +1,7 @@
 import { utilService } from "../../services/util.service.js"
+import star from "/src/assets/img/star.svg"
+import laurel_left from "/src/assets/img/laurel-left.svg"
+import laurel_right from "/src/assets/img/laurel-right.svg"
 
 export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
     return (
@@ -7,9 +10,9 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
             {(host.isSuperhost) && (
                 < div className="guest-favorite">
                     <div className="guest-favorite-icon">
-                        <img src="/src/assets/img/laurel-left.svg" alt="laurel icon" />
+                        <img src={laurel_left} alt="laurel icon" />
                         <span className="label-text">Guest favorite</span>
-                        <img src="/src/assets/img/laurel-right.svg" alt="laurel icon" />
+                        <img src={laurel_right} alt="laurel icon" />
                     </div>
                     <div className="guest-favorite-text">
                         One of the most loved homes on Airbnb, according to guests
@@ -19,7 +22,7 @@ export function StayDetailsHostInfo({ host, avgRating, numReviews }) {
                             <span className="rating-value">{avgRating}</span>
                             <span className="rating-stars">
                                 {[...Array(Math.round(avgRating))].map((_, index) => (
-                                    <img key={index} src="/src/assets/img/star.svg" alt="star icon" />
+                                    <img key={index} src={star} alt="star icon" />
                                 ))}
                             </span>
                         </div>

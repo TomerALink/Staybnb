@@ -5,6 +5,12 @@ import 'react-date-range/dist/theme/default.css'
 import { useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { SET_FILTER_BY } from '../store/reducers/stay.reducer.js'
+import flexible from '/src/assets/img/flexible.jpeg'
+import middle_east from  '/src/assets/img/middle_east.webp'
+import Italy from '/src/assets/img/Italy.webp'
+import UnitedStates from '/src/assets/img/UnitedStates.webp'
+import Greece from  '/src/assets/img/Greece.webp'
+import south_east_asia from  '/src/assets/img/south_east_asia.webp'
 
 
 export function StayFilter({ filterBy, defaultFilter }) {
@@ -190,27 +196,27 @@ export function StayFilter({ filterBy, defaultFilter }) {
   const regions = [
     {
       name: "I'm flexible",
-      map: 'flexible.jpeg',
+      map: flexible,
     },
     {
       name: 'Middle East',
-      map: 'middle_east.webp',
+      map: middle_east,
     },
     {
       name: 'Italy',
-      map: 'Italy.webp',
+      map: Italy,
     },
     {
       name: 'United States',
-      map: 'UnitedStates.webp',
+      map: UnitedStates,
     },
     {
       name: 'Greece',
-      map: 'Greece.webp',
+      map: Greece,
     },
     {
       name: 'South East Asia',
-      map: 'south_east_asia.webp',
+      map: south_east_asia,
     },
   ]
 
@@ -255,7 +261,7 @@ export function StayFilter({ filterBy, defaultFilter }) {
                   className="region-item"
                   onClick={() => handleRegionSelect(region)}
                 >
-                  <img src={`/src/assets/img/${region.map}`} alt={region.name} />
+                  <img src={region.map} alt={region.name} />
                   <span>{region.name}</span>
                 </div>
               ))}
