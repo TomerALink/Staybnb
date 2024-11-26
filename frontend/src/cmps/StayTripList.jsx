@@ -31,7 +31,7 @@ export function StayTripList() {
             <div className='orders-tag'>Trips</div>
         {/* <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayTrips.filter(obj => obj.status === "pending").length} pending trips</div>
          */}
-         <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayTrips.length}  trips</div>
+         <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayTrips.filter(stayTrip => stayTrip.guest._id === loggedinUser._id).length}  trips</div>
         <div className='trip-list-title'>
             <span></span>
             <span>Stay Name</span>

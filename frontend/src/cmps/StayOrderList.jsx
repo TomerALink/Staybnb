@@ -42,7 +42,7 @@ export function StayOrderList() {
         <div className='order-list-container'>
             <div className='orders-tag'>Orders</div>
         {/* <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayOrders.filter(obj => obj.status === "pending").length} pending orders</div> */}
-        <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayOrders.length}  orders</div>
+        <div className='order-list-greeting'>Hi {loggedinUser.fullname}, you have {stayOrders.filter(stayOrder => stayOrder.hostId._id === loggedinUser._id).length}  orders</div>
         <div className='order-list-title'>
             <span>Customer Name</span>
             <span claass="align-left">Stay Name</span>

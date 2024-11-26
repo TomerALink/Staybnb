@@ -17,6 +17,7 @@ export const userService = {
     signupWithGoogle,
     loginWithGoogle,
     isUserExist,
+    fakeLogin,
 }
 
 function getUsers() {
@@ -80,6 +81,24 @@ function saveLoggedinUser(user) {
     return user
 }
 
+async function fakeLogin() {
+    const credentials = {
+        username: 'demoUser',
+        password: '1234',
+        fullname: 'Demo User',
+        imgUrl: 'https://lh3.googleusercontent.com/a/ACg8ocJRQug5lL1oIlwqDXP9QO_HDLSNl0WpFiYKgNpBhw5jrEwDcVef=s96-c'
+    }
+    let loggedinUser = await login(credentials)
+    const loggedinUserToSet = {
+        _id: loggedinUser._id,
+        fullname: loggedinUser.fullname,
+        isAdmin: loggedinUser,
+        imgUrl: loggedinUser.imgUrl
+    }
+    _setLoggedinUser(loggedinUserToSet)
+    return loggedinUserToSet
+
+}
 
 async function signupWithGoogle({ sub, email, name, picture }) {
     const userExist = await isUserExist(email)

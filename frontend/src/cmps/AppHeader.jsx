@@ -11,11 +11,12 @@ import { userService } from '../services/user.service.js'
 import svg_i18 from '/src/assets/img/i18.svg'
 import burger from '/src/assets/img/burger.svg'
 import avatar from "/src/assets/img/avatar.svg"
+import { LoginModal } from './LoginModal.jsx'
 
 
 
 export function AppHeader() {
-
+	const [openLoginModal, setOpenLoginModal] = useState(false)
 	const [showMenu, setShowMenu] = useState(false)
 	const location = useLocation()
 	const dispatch = useDispatch()
@@ -44,65 +45,68 @@ export function AppHeader() {
 		})
 	}
 	return (
-
-		<div className={`header-container full   main-layout `}>
-			{showMenu && <HamburgerMenu loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} menuBtn={menuBtn} setShowMenu={setShowMenu} />}
-			<div className='top-header-container full'>
-
-
-				<header className={`app-header full main-layout ${location.pathname.startsWith('/stay/details') ? 'max-width' : ''}`}>
-					<section className="top-header">
-						<Link to="/"><Logo /></Link>
+		<>
+			<div className={`header-container full   main-layout `}>
+				{showMenu && <HamburgerMenu loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} menuBtn={menuBtn} setShowMenu={setShowMenu} openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} />}
+				<div className='top-header-container full'>
 
 
-
-						{(location.pathname.startsWith('/stay/details') || isScrolled) && (
-							<section className='stay-experience-btns'>
-								<Link className="btn-active" to="/">Stays</Link>
-								<button className="btn">Experiences</button>
-							</section>
-						)}
+					<header className={`app-header full main-layout ${location.pathname.startsWith('/stay/details') ? 'max-width' : ''}`}>
+						<section className="top-header">
+							<Link to="/"><Logo /></Link>
 
 
-						<div>
-							<Link className="btn btn-active airbnb-your-home" to="/stay/add">Airbnb your home</Link>
-							<button className="btn btn-active"><img className='i18' src={svg_i18} alt="" /></button>
-							<button ref={menuBtn} onClick={onToggleMenu} className="btn btn-shadow">
-								<img className='burger' src={burger} alt="" />
-								{loggedinUser?.imgUrl ?
-									(<img
-										className="avatar"
-										src={loggedinUser.imgUrl}
-										alt=""
-									/>)
-									:
-									(<img
-										className="avatar"
-										src={avatar}
-								
-										alt=""
-									/>)}
-							</button>
 
-						</div>
+							{(location.pathname.startsWith('/stay/details') || isScrolled) && (
+								<section className='stay-experience-btns'>
+									<Link className="btn-active" to="/">Stays</Link>
+									<button className="btn">Experiences</button>
+								</section>
+							)}
+
+
+							<div>
+								<Link className="btn btn-active airbnb-your-home" to="/stay/add">Airbnb your home</Link>
+								<button className="btn btn-active"><img className='i18' src={svg_i18} alt="" /></button>
+								<button ref={menuBtn} onClick={onToggleMenu} className="btn btn-shadow">
+									<img className='burger' src={burger} alt="" />
+									{loggedinUser?.imgUrl ?
+										(<img
+											className="avatar"
+											src={loggedinUser.imgUrl}
+											alt=""
+										/>)
+										:
+										(<img
+											className="avatar"
+											src={avatar}
+
+											alt=""
+										/>)}
+								</button>
+
+							</div>
+						</section>
+
+
+						{(!location.pathname.startsWith('/stay/details') || !isScrolled) &&
+							<section className={`serch-filter-container`}>
+								<StayFilter filterBy={filterBy} defaultFilter={defaultFilter} />
+							</section>}
+					</header>
+				</div>
+				{!location.pathname.startsWith('/stay/') &&
+
+					<section className="bottom-header">
+						<TagFilter filterBy={filterBy} onSetFilter={onSetFilterBy} defaultFilter={defaultFilter} />
 					</section>
+				}
 
 
-					{(!location.pathname.startsWith('/stay/details') || !isScrolled) &&
-						<section className={`serch-filter-container`}>
-							<StayFilter filterBy={filterBy} defaultFilter={defaultFilter} />
-						</section>}
-				</header>
 			</div>
-			{!location.pathname.startsWith('/stay/') &&
-
-				<section className="bottom-header">
-					<TagFilter filterBy={filterBy} onSetFilter={onSetFilterBy} defaultFilter={defaultFilter} />
-				</section>
+			{openLoginModal &&
+				<LoginModal openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} />
 			}
-
-
-		</div>
-
+		</>
 	)
 }
